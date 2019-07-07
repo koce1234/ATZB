@@ -5,8 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190706132744_Initiall.cs" />
+    <Compile Remove="Migrations\20190706132744_Initiall.Designer.cs" />
+    <Compile Remove="Migrations\20190706133632_Initiall.cs" />
+    <Compile Remove="Migrations\20190706133632_Initiall.Designer.cs" />
+    <Compile Remove="Migrations\20190706210007_Initiall.cs" />
+    <Compile Remove="Migrations\20190706210007_Initiall.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ATZB.Domain\ATZB.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

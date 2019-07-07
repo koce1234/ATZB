@@ -10,8 +10,11 @@ namespace ATZB.Domain
         {
             this.Id = Guid.NewGuid().ToString();
            
-            this.Orders = new HashSet<ATZBOrder>();
+            this.Orders = new HashSet<ATZBUserOrder>();
+
+            this.Offers = new HashSet<ATZBUserOffert>();
         }
+
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -32,14 +35,18 @@ namespace ATZB.Domain
 
         public bool AnyObligations { get; set; }
 
-        public string Password { get; set; }
+        public byte[] PasswordHash { get; set; }
+
+        public byte[] PasswordSalt { get; set; }
+
+        public string Email { get; set; }
 
         public UserType UserType { get; set; }
 
       
-        public ICollection<ATZBOrder> Orders { get; set; }
+        public ICollection<ATZBUserOffert> Offers { get; set; }
 
-        public ICollection<ATZBOffert> Offerts { get; set; }
+        public ICollection<ATZBUserOrder> Orders { get; set; }
 
 
     }
