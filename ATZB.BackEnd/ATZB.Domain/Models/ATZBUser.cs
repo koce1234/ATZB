@@ -16,29 +16,36 @@ namespace ATZB.Domain
         }
 
         public string Id { get; set; }
-
+        //a1,a2
+        //b1
         public string Name { get; set; }
-
+        //a1,a2
+        //b1
         public string Adress { get; set; }
-
+        //a1
+        //b1
         public string EGN { get; set; }
-
+        //a1
+        //b1
         public string LKNummber { get; set; }
-
+        //a1,a2
+        //b1
         public string Phone { get; set; }
-
+        //a1,a2
+        //b1
         public string ENK { get; set; }
-
+        
         public string DDSNumber { get; set; }
-
+        //b1
         public string RegKSB { get; set; }
-
+        //a1,a2
+        //b1
         public bool AnyObligations { get; set; }
 
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }
-
+        //a1,a2
         public string Email { get; set; }
 
         public UserType UserType { get; set; }

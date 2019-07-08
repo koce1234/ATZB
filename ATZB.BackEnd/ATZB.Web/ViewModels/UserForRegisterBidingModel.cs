@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class UserForRegisterDto
+    public class UserForRegisterBidingModel
     {
         [Required]
         [StringLength(30, MinimumLength = 7)]

@@ -31,7 +31,6 @@
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAllUsers()
         {
             var getAllUsers = _dbContext.Users.ToList();
@@ -40,7 +39,7 @@
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserForRegisterDto userForRegisterDto)
+        public async Task<IActionResult> Register([FromBody]UserForRegisterBidingModel userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +78,7 @@
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserForLogInDto userForLogInDto)
+        public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
         {
             var findUser = _dbContext.Users.FirstOrDefault(x => x.Email == userForLogInDto.Email);
 
