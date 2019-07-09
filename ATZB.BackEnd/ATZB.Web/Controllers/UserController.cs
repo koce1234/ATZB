@@ -13,30 +13,27 @@
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ATZBDbContext _dbContext;
-        private readonly IPasswordHasherService _passwordHasherService;
-        private readonly IPasswordValidatorService _passwordValidatorService;
-        private readonly ITokenGeneratorService _tokenGeneratorService;
+        private readonly IPasswordHasherService _PasswordHasherService;
+        private readonly IUserService _userService;
 
         public UserController(
-            ATZBDbContext dbContext, 
-            IPasswordHasherService passwordHasherService,
-            IPasswordValidatorService passwordValidatorService,
-            ITokenGeneratorService tokenGeneratorService)
+           IPasswordHasherService _passwordHasherService,
+            IUserService userService)
         {
-            _dbContext = dbContext;
-            _passwordHasherService = passwordHasherService;
-            _passwordValidatorService = passwordValidatorService;
-            _tokenGeneratorService = tokenGeneratorService;
+            _PasswordHasherService = _passwordHasherService;
+            _userService = userService;
         }
-
+        //TODO : May remove async
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            var getAllUsers = _dbContext.Users.ToList();
+            var getAllUsers = this._userService.GetAllUsers();
 
             return Ok(getAllUsers);
-        }
+        } 
+        //TODO Rado: need 4 views each one is for the diffrent type user registration
+        //TODO Rado: when user go to the register page set by default the usertype
+        //TODO Koce: implement 4 prive methods for each registration
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]UserForRegisterBidingModel userForRegisterDto)
@@ -46,16 +43,17 @@
                 return BadRequest();
             }
 
-            var isEmailAlreadyExisting = _dbContext.Users.Any(x => x.Email == userForRegisterDto.Email);
+            var isEmailAlreadyExisting = _userService.EmailAlreadyExist(userForRegisterDto.Email);
 
             if (isEmailAlreadyExisting)
             {
                 return BadRequest();
             }
 
-            var hashedPassword = _passwordHasherService.HashPassword(userForRegisterDto.Password);
-
-            var newUser = new ATZBUser
+            var hashedPassword = this._PasswordHasherService.HashPassword(userForRegisterDto.Password);
+           
+            
+            var user = new ATZBUser
             {
                 Name = userForRegisterDto.FullName,
                 Adress = userForRegisterDto.Adress,
@@ -71,40 +69,34 @@
                 PasswordSalt = hashedPassword.saltBytes
             };
 
-            await _dbContext.Users.AddAsync(newUser);
-            await _dbContext.SaveChangesAsync();
-
+            this._userService.CreateUser(user);
+         
             return Ok();
         }
-
+        //TODO : May remove async
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
         {
-            var findUser = _dbContext.Users.FirstOrDefault(x => x.Email == userForLogInDto.Email);
-
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("Model is not valid!");
             }
 
-            if (findUser == null)
+            var userAndToken = this._userService
+                .GetUserByUsernameAndPassword(userForLogInDto.Email,userForLogInDto.Password);
+
+
+            if (userAndToken.Key == null)
             {
                 return BadRequest("Email or password is incorrect!");
-            }
-
-            var validatePassword = _passwordValidatorService
-                .CompareHash(userForLogInDto.Password, findUser.PasswordHash, findUser.PasswordSalt);
-
-            if (validatePassword)
-            {
-                var token = _tokenGeneratorService.GenerateJWT(findUser.Id, findUser.Email);
-
-                return Ok(new { token });
             }
             else
             {
-                return BadRequest("Email or password is incorrect!");
+                return Ok(new { userAndToken.Value });
             }
+           
+               
+           
         }
     }
 }
