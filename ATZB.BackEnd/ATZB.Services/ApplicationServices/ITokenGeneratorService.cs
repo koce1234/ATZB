@@ -1,7 +1,9 @@
 ﻿namespace ATZB.Services.ApplicationServices
 {
+    using System.Threading.Tasks;
+
     public interface ITokenGeneratorService
     {
-        string GenerateJWT(string id, string email);
+        Task<string> GenerateJWT(string id, string email);
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace ATZB.Services.ApplicationServices
 {
+    using System.Threading.Tasks;
+
     public interface IPasswordValidatorService
     {
-        bool CompareHash(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb);
+        Task<bool> CompareHash(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb);
     }
 }

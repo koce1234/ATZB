@@ -1,9 +1,10 @@
 ﻿namespace ATZB.Services.ApplicationServices
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IPasswordHasherService
     {
-        KeyValuePair<byte[], byte[]> HashPassword(string password);
+        Task<KeyValuePair<byte[], byte[]>> HashPassword(string password);
     }
 }

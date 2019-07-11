@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using ATZB.Data;
 using ATZB.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace ATZB.Services.ApplicationServices
 {
@@ -11,43 +12,47 @@ namespace ATZB.Services.ApplicationServices
         private readonly IPasswordValidatorService _PasswordValidator;
         private readonly ITokenGeneratorService _TokenGeneratorService;
 
-        public UserService(ATZBDbContext _dbContext
-            ,IPasswordValidatorService _passwordValidator
-            ,ITokenGeneratorService _tokenGeneratorService)
+        public UserService(ATZBDbContext dbContext
+            ,IPasswordValidatorService passwordValidator
+            ,ITokenGeneratorService tokenGeneratorService)
         {
-            _DbContext = _dbContext;
-            _PasswordValidator = _passwordValidator;
-            _TokenGeneratorService = _tokenGeneratorService;
+            _DbContext = dbContext;
+            _PasswordValidator = passwordValidator;
+            _TokenGeneratorService = tokenGeneratorService;
         }
 
-        public ATZBUser CreateUser(ATZBUser user)
+        public async Task<ATZBUser> CreateUser(ATZBUser user)
         {
-            user = this._DbContext.Users.Add(user).Entity;
-            this._DbContext.SaveChanges();
+            //user = await _DbContext.Users.AddAsync(user).Entity;       Kakvo pravush tuka Koce
+            await _DbContext.Users.AddAsync(user);
+            await _DbContext.SaveChangesAsync();
 
             return user;
         }
 
-        public  List<ATZBUser> GetAllUsers()
+        public async Task<List<ATZBUser>> GetAllUsers()
         {
-            var users = this._DbContext.Users.ToList();
+            var users = await _DbContext.Users.ToListAsync();
             return users;
         }
 
-        public KeyValuePair<ATZBUser,string> GetUserByUsernameAndPassword(string email, string password)
+        public async Task<KeyValuePair<ATZBUser,string>> GetUserByUsernameAndPassword(string email, string password)
         {
             
-            var user = _DbContext.Users.FirstOrDefault(x => x.Email == email);
+            var user = await _DbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+
             if (user == null)
             {
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null,string.Empty);
                 return keyValue;
             }
-            var validatePassword = _PasswordValidator
+
+            var validatePassword = await _PasswordValidator
                .CompareHash(password, user.PasswordHash, user.PasswordSalt);
+
             if (validatePassword)
             {
-                var token = _TokenGeneratorService.GenerateJWT(user.Id, user.Email);
+                var token = await _TokenGeneratorService.GenerateJWT(user.Id, user.Email);
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(user, token);
                 return keyValue;
 
@@ -59,6 +64,6 @@ namespace ATZB.Services.ApplicationServices
             }
         }
 
-        public bool EmailAlreadyExist(string email) => _DbContext.Users.Any(x => x.Email == email);
+        public async Task<bool> EmailAlreadyExist(string email) => await _DbContext.Users.AnyAsync(x => x.Email == email);
     }
 }

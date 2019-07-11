@@ -6,6 +6,7 @@
     using System.Text;
     using System.Security.Claims;
     using System;
+    using System.Threading.Tasks;
 
     public class TokenGeneratorService : ITokenGeneratorService
     {
@@ -17,7 +18,7 @@
         }
 
 
-        public string GenerateJWT(string id, string email)
+        public async Task<string> GenerateJWT(string id, string email)
         {
             string securityKey = _configuration.GetSection("SecurityKey").Value;
 
