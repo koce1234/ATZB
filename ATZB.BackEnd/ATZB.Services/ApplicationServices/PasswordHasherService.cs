@@ -1,12 +1,13 @@
 ﻿namespace ATZB.Services.ApplicationServices
 {
     using System;
+    using System.Collections.Generic;
     using System.Security.Cryptography;
     using System.Text;
 
     public class PasswordHasherService : IPasswordHasherService
     {
-        public (byte[] saltBytes, byte[] hashedPassword) HashPassword(string password)
+        public KeyValuePair<byte[], byte[]> HashPassword(string password)
         {
             byte[] salt = new byte[32];
             RNGCryptoServiceProvider.Create().GetBytes(salt);
@@ -26,7 +27,7 @@
             Buffer.BlockCopy(hash, 0, hashPlusSalt, 0, hash.Length);
             Buffer.BlockCopy(salt, 0, hashPlusSalt, hash.Length, salt.Length);
 
-            return (salt, hashPlusSalt);
+            return new KeyValuePair<byte[], byte[]>(hashPlusSalt, salt);
         }
     }
 }

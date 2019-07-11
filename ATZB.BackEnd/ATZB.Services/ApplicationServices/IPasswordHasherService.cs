@@ -1,7 +1,9 @@
 ﻿namespace ATZB.Services.ApplicationServices
 {
+    using System.Collections.Generic;
+
     public interface IPasswordHasherService
     {
-        (byte[] saltBytes, byte[] hashedPassword) HashPassword(string password);
+        KeyValuePair<byte[], byte[]> HashPassword(string password);
     }
 }
