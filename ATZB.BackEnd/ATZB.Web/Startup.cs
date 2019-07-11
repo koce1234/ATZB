@@ -45,6 +45,7 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
+            services.AddSingleton<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
