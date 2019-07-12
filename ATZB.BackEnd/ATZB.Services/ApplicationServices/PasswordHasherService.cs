@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class PasswordHasherService : IPasswordHasherService
     {
-        public KeyValuePair<byte[], byte[]> HashPassword(string password)
+        public async Task<KeyValuePair<byte[], byte[]>> HashPassword(string password)
         {
             byte[] salt = new byte[32];
             RNGCryptoServiceProvider.Create().GetBytes(salt);

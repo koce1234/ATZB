@@ -1,12 +1,9 @@
 ﻿namespace ATZB.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
-    using ATZB.Data;
     using ATZB.Domain;
     using ATZB.Services.ApplicationServices;
     using ATZB.Web.Controllers.Dto_s;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -27,7 +24,7 @@
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            var getAllUsers = this._userService.GetAllUsers();
+            var getAllUsers = await _userService.GetAllUsers();
 
             return Ok(getAllUsers);
         } 
@@ -43,14 +40,14 @@
                 return BadRequest();
             }
 
-            var isEmailAlreadyExisting = _userService.EmailAlreadyExist(userForRegisterDto.Email);
+            var isEmailAlreadyExisting = await _userService.EmailAlreadyExist(userForRegisterDto.Email);
 
             if (isEmailAlreadyExisting)
             {
                 return BadRequest();
             }
 
-            var hashedPassword = this._PasswordHasherService.HashPassword(userForRegisterDto.Password);
+            var hashedPassword = await _PasswordHasherService.HashPassword(userForRegisterDto.Password);
            
             
             var user = new ATZBUser
@@ -65,15 +62,15 @@
                 RegKSB = userForRegisterDto.RegKSB,
                 AnyObligations = userForRegisterDto.AnyObligations,
                 Email = userForRegisterDto.Email,
-                PasswordHash = hashedPassword.hashedPassword,
-                PasswordSalt = hashedPassword.saltBytes
+                PasswordHash = hashedPassword.Key,
+                PasswordSalt = hashedPassword.Value
             };
 
-            this._userService.CreateUser(user);
+            await _userService.CreateUser(user);
          
             return Ok();
         }
-        //TODO : May remove async
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
         {
@@ -82,7 +79,7 @@
                 return BadRequest("Model is not valid!");
             }
 
-            var userAndToken = this._userService
+            var userAndToken = await _userService
                 .GetUserByUsernameAndPassword(userForLogInDto.Email,userForLogInDto.Password);
 
 
@@ -94,9 +91,6 @@
             {
                 return Ok(new { userAndToken.Value });
             }
-           
-               
-           
         }
     }
 }

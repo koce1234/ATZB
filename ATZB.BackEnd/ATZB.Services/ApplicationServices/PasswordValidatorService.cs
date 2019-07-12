@@ -4,10 +4,11 @@
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class PasswordValidatorService : IPasswordValidatorService
     {
-        public bool CompareHash(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb)
+        public async Task<bool> CompareHash(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb)
         {
             byte[] passwordBytes = UnicodeEncoding.Unicode.GetBytes(inputedPassword);
 
@@ -23,6 +24,8 @@
 
             Buffer.BlockCopy(hash, 0, hashPlusSalt, 0, hash.Length);
             Buffer.BlockCopy(saltFromDb, 0, hashPlusSalt, hash.Length, saltFromDb.Length);
+
+            var result = hashPlusSalt.SequenceEqual(passwordFromDb);
 
             if (hashPlusSalt.SequenceEqual(passwordFromDb))
             {
