@@ -22,7 +22,7 @@ namespace ATZB.Domain
 
         public TypeOfOrder Type { get; set; }
 
-        public ATZBUserOrder User { get; set; }
+        public ATZBUser User { get; set; }
 
         public string UserId { get; set; }
     }
