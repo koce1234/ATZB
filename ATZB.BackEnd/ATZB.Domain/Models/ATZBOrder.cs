@@ -5,6 +5,7 @@ using System.Text;
 namespace ATZB.Domain
 {
     //TODO: TRQBWA DA DOBAWQ SNIMKI I FAILOVE(EVENTUALNO)
+    //s
     public class ATZBOrder
     {
         public ATZBOrder()
