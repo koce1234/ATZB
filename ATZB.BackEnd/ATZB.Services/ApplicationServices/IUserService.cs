@@ -1,18 +1,17 @@
-﻿using ATZB.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ATZB.Services.ApplicationServices
+﻿namespace ATZB.Services.ApplicationServices
 {
+    using ATZB.Domain;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public interface IUserService
     {
-        ATZBUser CreateUser(ATZBUser user);
+        Task<ATZBUser> CreateUserAsync(ATZBUser user);
 
-        KeyValuePair<ATZBUser, string> GetUserByUsernameAndPassword(string email, string password);
+        Task<KeyValuePair<ATZBUser, string>> GetUserByEmailAndPasswordAsync(string email, string password);
 
-        List<ATZBUser> GetAllUsers();
+        Task<List<ATZBUser>> GetAllUsersAsync();
 
-        bool EmailAlreadyExist(string email);
+        Task<bool> EmailAlreadyExistAsync(string email);
     }
 }

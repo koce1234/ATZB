@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ATZB.Data;
+using ATZB.Data.DataContext;
 using ATZB.Domain;
+using ATZB.Services.ApplicationServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,19 +21,27 @@ namespace ATZB.Web.Controllers
         //3 .ReturnAllbyUserId
         //4 . FilterBy
         //5. AllOrdersByCity
-        private readonly ATZBDbContext dbContext;
+        private readonly ATZBDbContext _dbContext;
+        private readonly IOrderService _orderService;
 
-        public OrderController(ATZBDbContext dbContext)
+        public OrderController(ATZBDbContext dbContext
+        ,IOrderService orderService)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
+            this._orderService = orderService;
         }
 
-     
-        // This method returns all orders
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var getAllUsers = await _orderService.GetAllOrdersAsync();
+
+            return Ok(getAllUsers);
+        }
+
         
 
-        //TODO: May have changes
-        //TODO: I dont think its good practice to get 
 
     }
 }

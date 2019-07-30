@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\me\\Desktop\\ATZB\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\me\\Desktop\\ATZB-angular-dev-cycle-1\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
       "projectName": "ATZB.Domain",
-      "projectPath": "C:\\Users\\me\\Desktop\\ATZB\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+      "projectPath": "C:\\Users\\me\\Desktop\\ATZB-angular-dev-cycle-1\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
       "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\me\\Desktop\\ATZB\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+      "outputPath": "C:\\Users\\me\\Desktop\\ATZB-angular-dev-cycle-1\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

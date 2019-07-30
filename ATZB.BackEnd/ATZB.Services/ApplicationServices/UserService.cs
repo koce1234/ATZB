@@ -1,66 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ATZB.Data;
+using ATZB.Data.DataContext;
 using ATZB.Domain;
+using ATZB.Services.BaseServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace ATZB.Services.ApplicationServices
 {
     public class UserService : IUserService
     {
-        private readonly ATZBDbContext _DbContext;
-        private readonly IPasswordValidatorService _PasswordValidator;
-        private readonly ITokenGeneratorService _TokenGeneratorService;
+        private readonly ATZBDbContext _dbContext;
+        private readonly IPasswordValidatorService _passwordValidator;
+        private readonly ITokenGeneratorService _tokenGeneratorService;
 
-        public UserService(ATZBDbContext _dbContext
-            ,IPasswordValidatorService _passwordValidator
-            ,ITokenGeneratorService _tokenGeneratorService)
+        public UserService(ATZBDbContext dbContext)
         {
-            _DbContext = _dbContext;
-            _PasswordValidator = _passwordValidator;
-            _TokenGeneratorService = _tokenGeneratorService;
+            this._dbContext = dbContext;
+        }
+        public UserService(ATZBDbContext dbContext
+            ,IPasswordValidatorService passwordValidator
+            ,ITokenGeneratorService tokenGeneratorService)
+        {
+            _dbContext = dbContext;
+            _passwordValidator = passwordValidator;
+            _tokenGeneratorService = tokenGeneratorService;
         }
 
-        public ATZBUser CreateUser(ATZBUser user)
+        public async Task<ATZBUser> CreateUserAsync(ATZBUser user)
         {
-            user = this._DbContext.Users.Add(user).Entity;
-            this._DbContext.SaveChanges();
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
 
             return user;
         }
 
-        public  List<ATZBUser> GetAllUsers()
+        public async Task<List<ATZBUser>> GetAllUsersAsync()
         {
-            var users = this._DbContext.Users.ToList();
+            var users = await _dbContext.Users.ToListAsync();
             return users;
         }
 
-        public KeyValuePair<ATZBUser,string> GetUserByUsernameAndPassword(string email, string password)
+        public async Task<KeyValuePair<ATZBUser,string>> GetUserByEmailAndPasswordAsync(string email, string password)
         {
             
-            var user = _DbContext.Users.FirstOrDefault(x => x.Email == email);
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+
             if (user == null)
             {
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null,string.Empty);
                 return keyValue;
             }
-            var validatePassword = _PasswordValidator
-               .CompareHash(password, user.PasswordHash, user.PasswordSalt);
+
+            var validatePassword =  _passwordValidator
+               .CompareHashAsync(password , user.PasswordHash , user.PasswordSalt).Result;
+
             if (validatePassword)
             {
-                var token = _TokenGeneratorService.GenerateJWT(user.Id, user.Email);
+                var token = await _tokenGeneratorService.GenerateJWTAsync(user.Id, user.Email);
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(user, token);
                 return keyValue;
 
             }
             else
             {
-                KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null, string.Empty);
+               KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null, string.Empty);
                 return keyValue;
             }
         }
 
-        public bool EmailAlreadyExist(string email) => _DbContext.Users.Any(x => x.Email == email);
+        public async Task<bool> EmailAlreadyExistAsync(string email) 
+            => await _dbContext.Users.AnyAsync(x => x.Email == email);
     }
 }
