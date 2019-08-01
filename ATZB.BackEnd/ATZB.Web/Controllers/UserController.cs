@@ -24,7 +24,7 @@ namespace ATZB.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsersAsync()
         {
             var getAllUsers = await _userService.GetAllUsersAsync();
 
@@ -32,7 +32,7 @@ namespace ATZB.Web.Controllers
         } 
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserForRegisterBidingModel userForRegisterDto)
+        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace ATZB.Web.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
+        public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {
             if (!ModelState.IsValid)
             {

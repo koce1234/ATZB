@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ATZB.Data.DataContext;
 using ATZB.Domain;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ATZB.Services.ApplicationServices
 {
-    public class OrderService
+    public class OrderService:IOrderService
     {
 
         private readonly ATZBDbContext _dbContext;
@@ -34,6 +35,15 @@ namespace ATZB.Services.ApplicationServices
             return orders;
         }
 
+        public async Task<ATZBOrder> RegisterOrderAsync(ATZBOrder order)
+        {
+            await _dbContext.Orders.AddAsync(order);
+            await _dbContext.SaveChangesAsync();
 
+            return order;
+        }
+
+        public async Task<List<ATZBOrder>> GetAllOrderByUserId(string userId)
+            => await _dbContext.Orders.Where(u => u.UserId == userId).ToListAsync();
     }
 }
