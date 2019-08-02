@@ -20,6 +20,6 @@ namespace ATZB.Domain
 
         public string UserId { get; set; }
 
-        public ATZBUserOffert User { get; set; }
+        public ATZBUser User { get; set; }
     }
 }

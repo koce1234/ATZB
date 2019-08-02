@@ -10,9 +10,9 @@ namespace ATZB.Domain
         {
             this.Id = Guid.NewGuid().ToString();
            
-            this.Orders = new HashSet<ATZBUserOrder>();
+            this.Orders = new HashSet<ATZBOrder>();
 
-            this.Offers = new HashSet<ATZBUserOffert>();
+            this.Offers = new HashSet<ATZBOffert>();
         }
 
         public string Id { get; set; }
@@ -51,9 +51,9 @@ namespace ATZB.Domain
         public UserType UserType { get; set; }
 
       
-        public ICollection<ATZBUserOffert> Offers { get; set; }
+        public ICollection<ATZBOffert> Offers { get; set; }
 
-        public ICollection<ATZBUserOrder> Orders { get; set; }
+        public ICollection<ATZBOrder> Orders { get; set; }
 
 
     }
