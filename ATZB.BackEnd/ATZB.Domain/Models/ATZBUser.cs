@@ -21,7 +21,7 @@ namespace ATZB.Domain
         public string Name { get; set; }
         //a1,a2
         //b1
-        public string Adress { get; set; }
+        public string Address { get; set; }
         //a1
         //b1
         public string EGN { get; set; }

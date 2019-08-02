@@ -1,23 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import bootstrap from "bootstrap";
-import { HomeComponent } from './Home/home.component';
-import { UserRegisterComponent } from './UserPages/user-register/user-register.component';
-import { UserLogInComponent } from './UserPages/user-log-in/user-log-in.component';
+import { UserModule } from './user-pages/UserModule';
+import { NavigationModule } from './navigation-paterns/NavigationModule';
+import { HomePageComponent } from './sheard/home-page/home-page.component';
+import { PageNotFoundComponent } from './sheard/page-not-found/page-not-found.component';
+import { MaterialModule } from './MaterialModule';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UserRegisterComponent,
-    UserLogInComponent
+    HomePageComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    UserModule,
+    NavigationModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

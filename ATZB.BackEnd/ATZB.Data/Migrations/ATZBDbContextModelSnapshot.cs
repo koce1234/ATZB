@@ -64,7 +64,7 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Adress");
+                    b.Property<string>("Address");
 
                     b.Property<bool>("AnyObligations");
 

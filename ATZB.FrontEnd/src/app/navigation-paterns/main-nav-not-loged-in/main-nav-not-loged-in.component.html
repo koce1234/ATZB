@@ -1,0 +1,20 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <span><a routerLink="" class="a-link-corr">ATZB</a></span>
+            <div class="user-buttons">
+                <button mat-raised-button color="accent" class="user-signIn">
+                    <a routerLink="/login" class="a-link-corr">
+                        Sign in
+                    </a></button>
+                <button mat-raised-button color="warn" class="user-signUp" [matMenuTriggerFor]="menu">Sign up</button>
+                <mat-menu #menu="matMenu" class="register-menu">
+                        <button mat-menu-item><a routerLink="/registerAsClient" class="menu-btn">Register as client</a></button>
+                        <button mat-menu-item><a routerLink="/registeAsPerformer" class="menu-btn">Register as performer</a></button>
+                </mat-menu>
+            </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>

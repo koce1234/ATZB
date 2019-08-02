@@ -53,7 +53,7 @@
             var user = new ATZBUser
             {
                 Name = userForRegisterDto.FullName,
-                Adress = userForRegisterDto.Adress,
+                Address = userForRegisterDto.Address,
                 EGN = userForRegisterDto.EGN,
                 LKNummber = userForRegisterDto.LKNumber,
                 Phone = userForRegisterDto.Phone,

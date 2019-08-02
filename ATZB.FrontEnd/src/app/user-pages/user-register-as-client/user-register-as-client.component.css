@@ -1,0 +1,29 @@
+.sigup-main {
+    text-align: center;
+}
+
+.sigup-h2 {
+    font-size: 80px;
+    margin: 0;
+    color: brown;
+}
+
+.signup-p {
+    font-size: 30px;
+    margin: 0;
+    margin-top: 20px;
+    color: rgb(126, 158, 190);
+}
+
+.field-div {
+    text-align: center;
+    display: list-item;
+}
+
+.field-p {
+    
+}
+
+.field-formfield {
+
+}

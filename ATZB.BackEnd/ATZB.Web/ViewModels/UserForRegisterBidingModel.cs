@@ -10,7 +10,7 @@
 
         [Required]
         [StringLength(30, MinimumLength = 6)]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [StringLength(10, MinimumLength = 10)]
