@@ -1,1 +1,20 @@
-<p>user-login works!</p>
+<div>
+    <h1>Log in</h1>
+    <p>Please fullfill the fields</p>
+    <mat-divider></mat-divider>
+</div>
+<form [formGroup]="logInInput">
+    <div>
+        <p>Email</p>
+        <mat-form-field>
+            <input matInput formControlName="email" placeholder="McBoss@gmail.com">
+        </mat-form-field>
+    </div>
+    <div>
+        <p>Password</p>
+        <mat-form-field>
+            <input type="password" matInput formControlName="password" placeholder="Bossy password">
+        </mat-form-field>
+    </div>
+</form>
+<button mat-raised-button color="primary" (click)="onLogin()">Log in</button>

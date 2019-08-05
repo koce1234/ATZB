@@ -5,7 +5,8 @@ import { UserRegisterAsPerformerComponent } from './user-register-as-performer/u
 import { UserClientComponent } from './user-client/user-client.component';
 import { UserPerformerComponent } from './user-performer/user-performer.component';
 import { MaterialModule } from '../MaterialModule';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations:[
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     imports: [
         MaterialModule,
         ReactiveFormsModule,
+        MatRadioModule
     ],
     exports: [
         UserLoginComponent,

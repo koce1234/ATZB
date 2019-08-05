@@ -4,14 +4,16 @@ using ATZB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ATZB.Data.Migrations
 {
     [DbContext(typeof(ATZBDbContext))]
-    partial class ATZBDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190803101334_Changing Address to StreetAddress, Adding a City, Name field is divided to FirstName And LastName")]
+    partial class ChangingAddresstoStreetAddressAddingaCityNamefieldisdividedtoFirstNameAndLastName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

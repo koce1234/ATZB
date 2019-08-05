@@ -1,5 +1,6 @@
-<!-- <div>
+<div *ngIf="!hasLogedIn(); else loged">
   <app-main-nav-not-loged-in></app-main-nav-not-loged-in>
-</div> -->
-
-<app-main-nav></app-main-nav>
+</div>
+<ng-template #loged>
+  <app-main-nav></app-main-nav>
+</ng-template>

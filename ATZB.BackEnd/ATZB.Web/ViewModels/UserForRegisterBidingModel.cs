@@ -5,18 +5,24 @@
     public class UserForRegisterBidingModel
     {
         [Required]
-        [StringLength(30, MinimumLength = 7)]
-        public string FullName { get; set; }
+        [StringLength(15, MinimumLength = 3)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(15, MinimumLength = 4)]
+        public string LastName { get; set; }
 
         [Required]
         [StringLength(30, MinimumLength = 6)]
-        public string Address { get; set; }
+        public string StreetAddress { get; set; }
 
         [Required]
+        [StringLength(16, MinimumLength = 4)]
+        public string City { get; set; }
+
         [StringLength(10, MinimumLength = 10)]
         public string EGN { get; set; }
 
-        [Required]
         [StringLength(10, MinimumLength = 10)]
         public string LKNumber { get; set; }
 
@@ -24,16 +30,12 @@
         [Phone]
         public string Phone { get; set; }
 
-        [Required]
         public string ENK { get; set; }
 
-        [Required]
         public string DDSNumber { get; set; }
 
-        [Required]
         public string RegKSB { get; set; }
 
-        [Required]
         public bool AnyObligations { get; set; }
 
         [Required]

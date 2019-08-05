@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ATZB';
+  hasLogedIn(): boolean{
+    if (localStorage.getItem('token')){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

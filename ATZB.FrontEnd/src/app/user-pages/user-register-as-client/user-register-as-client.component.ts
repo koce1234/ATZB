@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as httpUrls from '../../sheard/url`s/urls';
+import { RegisterAsClient } from '../../sheard/user-dto/registerAsClient';
 
 @Component({
   selector: 'app-user-register-as-client',
@@ -33,24 +35,23 @@ export class UserRegisterAsClientComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('register btn clicked');
-    console.log(this.userInputGroup);
-
-    debugger;
-    
     if (this.userInputGroup.status !== 'INVALID'){
       if (this.userInputGroup.controls.password.value === this.userInputGroup.controls.confirmPassword.value){
-        let sentData = [
-          this.userInputGroup.controls.firstName.value,
-          this.userInputGroup.controls.lastName.value,
-          this.userInputGroup.controls.email.value,
-          this.userInputGroup.controls.streetAddress.value,
-          this.userInputGroup.controls.phone.value,
-          this.userInputGroup.controls.city.value,
-          this.userInputGroup.controls.password.value,
-        ];
-        
-        this.http.post('https://localhost:44379/api/user/register', sentData)
+        const headersContent = {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+
+        const requestOptions = {                                                                                                                                                                                 
+          headers: new HttpHeaders(headersContent), 
+        };
+
+        this.http.post(httpUrls.registerAsClient, this.userInputGroup.value, requestOptions)
+        .subscribe(
+          (next) => console.log(next),
+          (error) => console.log(error),
+          () => this.router.navigate(['login']));
       }
     }
   }
