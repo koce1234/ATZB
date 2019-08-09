@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ATZB.Data.Migrations
 {
     [DbContext(typeof(ATZBDbContext))]
-    [Migration("20190707075746_Initiall")]
+    [Migration("20190731085219_Initiall")]
     partial class Initiall
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Adress");
+                    b.Property<string>("Address");
 
                     b.Property<bool>("AnyObligations");
 

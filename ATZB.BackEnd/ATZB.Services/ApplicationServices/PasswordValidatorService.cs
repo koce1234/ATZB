@@ -27,7 +27,7 @@
 
             var result = hashPlusSalt.SequenceEqual(passwordFromDb);
 
-            if (hashPlusSalt.SequenceEqual(passwordFromDb))
+            if (result)
             {
                 return true;
             }

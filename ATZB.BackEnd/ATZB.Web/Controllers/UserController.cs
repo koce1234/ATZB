@@ -32,8 +32,8 @@
         //TODO Rado: when user go to the register page set by default the usertype
         //TODO Koce: implement 4 prive methods for each registration
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserForRegisterBidingModel userForRegisterDto)
+        [HttpPost("registerAsClient")]
+        public async Task<IActionResult> RegisterAsClient([FromBody]UserForRegisterBidingModel userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
@@ -52,8 +52,10 @@
             
             var user = new ATZBUser
             {
-                Name = userForRegisterDto.FullName,
-                Address = userForRegisterDto.Address,
+                FirstName = userForRegisterDto.FirstName,
+                LastName = userForRegisterDto.LastName,
+                StreetAddress = userForRegisterDto.StreetAddress,
+                City = userForRegisterDto.City,
                 EGN = userForRegisterDto.EGN,
                 LKNummber = userForRegisterDto.LKNumber,
                 Phone = userForRegisterDto.Phone,
@@ -69,6 +71,12 @@
             await _userService.CreateUser(user);
          
             return Ok();
+        }
+
+        [HttpPost("registerAsPerformer")]
+        public async Task<IActionResult> RegisterAsPerformer()
+        {
+            return BadRequest("Implementation needed!");
         }
 
         [HttpPost("login")]

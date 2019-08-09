@@ -42,10 +42,11 @@ namespace ATZB.Web
                             IssuerSigningKey = symetricSecurityKey
                         });
 
+
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient   <IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -55,6 +56,8 @@ namespace ATZB.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
+
+            app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
