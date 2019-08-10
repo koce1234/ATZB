@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< .merge_file_a14740
     "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
         "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+=======
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "projectName": "ATZB.Domain",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+>>>>>>> .merge_file_a15048
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

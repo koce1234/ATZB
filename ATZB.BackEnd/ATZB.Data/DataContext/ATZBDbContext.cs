@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ATZB.Domain;
+﻿using ATZB.Domain;
+using Microsoft.EntityFrameworkCore;
 
-namespace ATZB.Data
+namespace ATZB.Data.DataContext
 {
     public class ATZBDbContext:DbContext
     {

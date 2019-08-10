@@ -1,3 +1,6 @@
+using ATZB.Data.DataContext;
+using ATZB.Services.BaseServices;
+
 namespace ATZB.Web
 {
     using ATZB.Data;
@@ -46,7 +49,11 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
+<<<<<<< .merge_file_a08464
             services.AddTransient   <IUserService, UserService>();
+=======
+            services.AddTransient<IUserService, UserService>();
+>>>>>>> .merge_file_a13688
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
