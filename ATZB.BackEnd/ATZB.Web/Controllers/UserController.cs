@@ -26,11 +26,7 @@ namespace ATZB.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-<<<<<<< .merge_file_a14836
-            var getAllUsers = await _userService.GetAllUsers();
-=======
             var getAllUsers = await _userService.GetAllUsersAsync();
->>>>>>> .merge_file_a15820
 
             return Ok(getAllUsers);
         } 
@@ -48,22 +44,14 @@ namespace ATZB.Web.Controllers
                 return BadRequest();
             }
 
-<<<<<<< .merge_file_a14836
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExist(userForRegisterDto.Email);
-=======
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(userForRegisterDto.Email);
->>>>>>> .merge_file_a15820
 
             if (isEmailAlreadyExisting)
             {
                 return BadRequest();
             }
 
-<<<<<<< .merge_file_a14836
-            var hashedPassword = await _PasswordHasherService.HashPassword(userForRegisterDto.Password);
-=======
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(userForRegisterDto.Password);
->>>>>>> .merge_file_a15820
            
             
             var user = new ATZBUser
@@ -84,11 +72,7 @@ namespace ATZB.Web.Controllers
                 PasswordSalt = hashedPassword.Value
             };
 
-<<<<<<< .merge_file_a14836
-            await _userService.CreateUser(user);
-=======
             await _userService.CreateUserAsync(user);
->>>>>>> .merge_file_a15820
          
             return Ok();
         }
@@ -111,11 +95,7 @@ namespace ATZB.Web.Controllers
             }
 
             var userAndToken = await _userService
-<<<<<<< .merge_file_a14836
-                .GetUserByUsernameAndPassword(userForLogInDto.Email,userForLogInDto.Password);
-=======
                 .GetUserByEmailAndPasswordAsync(userForLogInDto.Email,userForLogInDto.Password);
->>>>>>> .merge_file_a15820
 
 
             if (userAndToken.Key == null)

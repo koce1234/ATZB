@@ -49,26 +49,56 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
-<<<<<<< .merge_file_a08464
-            services.AddTransient   <IUserService, UserService>();
-=======
             services.AddTransient<IUserService, UserService>();
->>>>>>> .merge_file_a13688
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+namespace ATZB.Web
+{
+    using ATZB.Data;
+    using ATZB.Services.ApplicationServices;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
+
+    public class Startup
+    {
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseDeveloperExceptionPage();
+            string securityKey = _configuration.GetSection("SecurityKey").Value;
+            var symetricSecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(securityKey));
+
+            services.AddDbContext<ATZBDbContext>(options =>
+                options
+                .UseSqlServer(_configuration.GetSection("DbConnectionString").Value));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(x =>
+                        x.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = "smesk.in",
+                            ValidAudience = "standartUser",
+                            IssuerSigningKey = symetricSecurityKey
+                        });
+
 
             app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
-    }
-}
 
