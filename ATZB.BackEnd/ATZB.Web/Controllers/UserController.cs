@@ -1,4 +1,6 @@
-﻿namespace ATZB.Web.Controllers
+﻿using ATZB.Services.BaseServices;
+
+namespace ATZB.Web.Controllers
 {
     using System.Threading.Tasks;
     using ATZB.Domain;
@@ -10,50 +12,49 @@
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IPasswordHasherService _PasswordHasherService;
+        private readonly IPasswordHasherService _passwordHasherService;
         private readonly IUserService _userService;
 
         public UserController(
-           IPasswordHasherService _passwordHasherService,
+           IPasswordHasherService passwordHasherService,
             IUserService userService)
         {
-            _PasswordHasherService = _passwordHasherService;
+            this._passwordHasherService = passwordHasherService;
             _userService = userService;
         }
-        //TODO : May remove async
+
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsersAsync()
         {
-            var getAllUsers = await _userService.GetAllUsers();
+            var getAllUsers = await _userService.GetAllUsersAsync();
 
             return Ok(getAllUsers);
         } 
-        //TODO Rado: need 4 views each one is for the diffrent type user registration
-        //TODO Rado: when user go to the register page set by default the usertype
-        //TODO Koce: implement 4 prive methods for each registration
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserForRegisterBidingModel userForRegisterDto)
+        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExist(userForRegisterDto.Email);
+            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(userForRegisterDto.Email);
 
             if (isEmailAlreadyExisting)
             {
                 return BadRequest();
             }
 
-            var hashedPassword = await _PasswordHasherService.HashPassword(userForRegisterDto.Password);
+            var hashedPassword = await _passwordHasherService.HashPasswordAsync(userForRegisterDto.Password);
            
             
             var user = new ATZBUser
             {
-                Name = userForRegisterDto.FullName,
-                Adress = userForRegisterDto.Adress,
+                FirstName = userForRegisterDto.FirstName,
+                LastName = userForRegisterDto.LastName,
+                StreetAddress = userForRegisterDto.StreetAddress,
+                City = userForRegisterDto.City,
                 EGN = userForRegisterDto.EGN,
                 LKNummber = userForRegisterDto.LKNumber,
                 Phone = userForRegisterDto.Phone,
@@ -66,13 +67,13 @@
                 PasswordSalt = hashedPassword.Value
             };
 
-            await _userService.CreateUser(user);
+            await _userService.CreateUserAsync(user);
          
             return Ok();
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
+        public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {
             if (!ModelState.IsValid)
             {
@@ -80,7 +81,7 @@
             }
 
             var userAndToken = await _userService
-                .GetUserByUsernameAndPassword(userForLogInDto.Email,userForLogInDto.Password);
+                .GetUserByEmailAndPasswordAsync(userForLogInDto.Email,userForLogInDto.Password);
 
 
             if (userAndToken.Key == null)

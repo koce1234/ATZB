@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATZB.Data", "ATZB.Data\ATZB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATZB.Services", "ATZB.Services\ATZB.Services.csproj", "{31E30FD7-3298-492E-B85D-EA9655EAB859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATZB.Domain", "ATZB.Domain\ATZB.Domain.csproj", "{248898C3-F4DB-4801-A1E7-3EE32322765F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATZB.Domain", "ATZB.Domain\ATZB.Domain.csproj", "{248898C3-F4DB-4801-A1E7-3EE32322765F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATZB.Tests", "ATZB.Tests\ATZB.Tests.csproj", "{13B759BA-49BE-464A-82FF-DAED36860DC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{248898C3-F4DB-4801-A1E7-3EE32322765F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248898C3-F4DB-4801-A1E7-3EE32322765F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248898C3-F4DB-4801-A1E7-3EE32322765F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B759BA-49BE-464A-82FF-DAED36860DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B759BA-49BE-464A-82FF-DAED36860DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B759BA-49BE-464A-82FF-DAED36860DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B759BA-49BE-464A-82FF-DAED36860DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

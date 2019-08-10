@@ -5,6 +5,7 @@ using System.Text;
 namespace ATZB.Domain
 {
     //TODO: TRQBWA DA DOBAWQ SNIMKI I FAILOVE(EVENTUALNO)
+    //s
     public class ATZBOrder
     {
         public ATZBOrder()
@@ -21,7 +22,7 @@ namespace ATZB.Domain
 
         public TypeOfOrder Type { get; set; }
 
-        public ATZBUserOrder User { get; set; }
+        public ATZBUser User { get; set; }
 
         public string UserId { get; set; }
     }

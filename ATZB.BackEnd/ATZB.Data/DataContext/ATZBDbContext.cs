@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ATZB.Domain;
+﻿using ATZB.Domain;
+using Microsoft.EntityFrameworkCore;
 
-namespace ATZB.Data
+namespace ATZB.Data.DataContext
 {
     public class ATZBDbContext:DbContext
     {
@@ -11,10 +11,7 @@ namespace ATZB.Data
 
         public DbSet<ATZBOffert> Offerts { get; set; }
 
-        public DbSet<ATZBUserOffert> UserOfferts { get; set; }
-
-        public DbSet<ATZBUserOrder> UserOrders { get; set; }
-
+       
         public ATZBDbContext(DbContextOptions<ATZBDbContext> options) :base(options)
         {
         }
@@ -25,31 +22,7 @@ namespace ATZB.Data
 
         protected override void OnModelCreating(ModelBuilder model)
         {
-            model.Entity<ATZBUserOffert>()
-                .HasKey(x => new { x.OffertId, x.UserId });
-
-            model.Entity<ATZBUserOffert>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.Offers)
-                .HasForeignKey(x => x.UserId);
-
-            model.Entity<ATZBUserOffert>()
-                .HasOne(x => x.Offert)
-                .WithOne(x => x.User);
-
-            model.Entity<ATZBUserOrder>()
-                .HasKey(x => new { x.UserId, x.OrderId });
-
-            model.Entity<ATZBUserOrder>()
-                .HasOne(x => x.User)
-                .WithMany(x => x.Orders)
-                .HasForeignKey(x => x.UserId);
-
-            model.Entity<ATZBUserOrder>()
-                .HasOne(x => x.Order)
-                .WithOne(x => x.User);
-
-            model.Entity<ATZBOffert>()
+                       model.Entity<ATZBOffert>()
                 .Property(x => x.Price)
                 .HasColumnType("decimal(13, 2)");
 
