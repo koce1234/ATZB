@@ -26,7 +26,7 @@ namespace ATZB.Tests.ApplicationServices
             SeedDbWithUsers(context);
 
             int expectedUserCount = context.Users.Count();
-            int actualUserCount = userService.GetAllUsersAsync().Result.Count;
+            int actualUserCount = userService.GetAllUsers().Result.Count;
 
             Assert.Equal(expectedUserCount, actualUserCount);
             
@@ -44,7 +44,7 @@ namespace ATZB.Tests.ApplicationServices
 
             int expectedUsersCount = context.Users.Count() + 1;
 
-           await userService.CreateUserAsync(new ATZBUser());
+           await userService.CreateUser(new ATZBUser());
            int actualUsersCount = context.Users.Count();
 
             Assert.Equal(expectedUsersCount,actualUsersCount);
@@ -69,9 +69,9 @@ namespace ATZB.Tests.ApplicationServices
                 ,PasswordHash = passwordHashed.Key 
                 , PasswordSalt = passwordHashed.Value};
             SeedDbWithUsers(context);
-            await userService.CreateUserAsync(expectedUser);
+            await userService.CreateUser(expectedUser);
 
-            var actualUser = userService.GetUserByEmailAndPasswordAsync(emailForTest, passwordForTest).Result.Key;
+            var actualUser = userService.GetUserByUsernameAndPassword(emailForTest, passwordForTest).Result.Key;
             
             Assert.Equal(expectedUser , actualUser);
         }
@@ -98,7 +98,7 @@ namespace ATZB.Tests.ApplicationServices
             context.SaveChanges();
 
 
-            Assert.True(userService.EmailAlreadyExistAsync(emailForCheck).Result);
+            Assert.True(userService.EmailAlreadyExist(emailForCheck).Result);
 
         }
 

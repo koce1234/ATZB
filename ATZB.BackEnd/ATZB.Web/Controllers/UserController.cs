@@ -1,12 +1,12 @@
 ﻿using ATZB.Services.BaseServices;
+using ATZB.Services.ApplicationServices;
+using ATZB.Domain;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using ATZB.Web.Controllers.Dto_s;
 
 namespace ATZB.Web.Controllers
 {
-    using System.Threading.Tasks;
-    using ATZB.Domain;
-    using ATZB.Services.ApplicationServices;
-    using ATZB.Web.Controllers.Dto_s;
-    using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -26,25 +26,20 @@ namespace ATZB.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-            var getAllUsers = await _userService.GetAllUsersAsync();
+            var getAllUsers = await _userService.GetAllUsers();
 
             return Ok(getAllUsers);
-        } 
+        }
 
-<<<<<<< .merge_file_a14836
         [HttpPost("registerAsClient")]
         public async Task<IActionResult> RegisterAsClient([FromBody]UserForRegisterBidingModel userForRegisterDto)
-=======
-        [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
->>>>>>> .merge_file_a15820
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(userForRegisterDto.Email);
+            var isEmailAlreadyExisting = await _userService.EmailAlreadyExist(userForRegisterDto.Email);
 
             if (isEmailAlreadyExisting)
             {
@@ -52,8 +47,8 @@ namespace ATZB.Web.Controllers
             }
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(userForRegisterDto.Password);
-           
-            
+
+
             var user = new ATZBUser
             {
                 FirstName = userForRegisterDto.FirstName,
@@ -72,20 +67,17 @@ namespace ATZB.Web.Controllers
                 PasswordSalt = hashedPassword.Value
             };
 
-            await _userService.CreateUserAsync(user);
-         
+            await _userService.CreateUser(user);
+
             return Ok();
         }
 
-<<<<<<< .merge_file_a14836
         [HttpPost("registerAsPerformer")]
         public async Task<IActionResult> RegisterAsPerformer()
         {
             return BadRequest("Implementation needed!");
         }
 
-=======
->>>>>>> .merge_file_a15820
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {
@@ -95,7 +87,7 @@ namespace ATZB.Web.Controllers
             }
 
             var userAndToken = await _userService
-                .GetUserByEmailAndPasswordAsync(userForLogInDto.Email,userForLogInDto.Password);
+                .GetUserByUsernameAndPassword(userForLogInDto.Email, userForLogInDto.Password);
 
 
             if (userAndToken.Key == null)
