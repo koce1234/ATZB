@@ -1,0 +1,348 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
+        "projectName": "ATZB.Data",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "projectName": "ATZB.Domain",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
+        "projectName": "ATZB.Services",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              },
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
+        "projectName": "ATZB.Tests",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              },
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              },
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
+              },
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
+        "projectName": "ATZB.Web",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              },
+              "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb1\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

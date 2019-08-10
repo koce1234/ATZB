@@ -1,4 +1,6 @@
-﻿namespace ATZB.Web.Controllers
+﻿using ATZB.Services.BaseServices;
+
+namespace ATZB.Web.Controllers
 {
     using System.Threading.Tasks;
     using ATZB.Domain;
@@ -10,44 +12,58 @@
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IPasswordHasherService _PasswordHasherService;
+        private readonly IPasswordHasherService _passwordHasherService;
         private readonly IUserService _userService;
 
         public UserController(
-           IPasswordHasherService _passwordHasherService,
+           IPasswordHasherService passwordHasherService,
             IUserService userService)
         {
-            _PasswordHasherService = _passwordHasherService;
+            this._passwordHasherService = passwordHasherService;
             _userService = userService;
         }
-        //TODO : May remove async
+
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsersAsync()
         {
+<<<<<<< .merge_file_a14836
             var getAllUsers = await _userService.GetAllUsers();
+=======
+            var getAllUsers = await _userService.GetAllUsersAsync();
+>>>>>>> .merge_file_a15820
 
             return Ok(getAllUsers);
         } 
-        //TODO Rado: need 4 views each one is for the diffrent type user registration
-        //TODO Rado: when user go to the register page set by default the usertype
-        //TODO Koce: implement 4 prive methods for each registration
 
+<<<<<<< .merge_file_a14836
         [HttpPost("registerAsClient")]
         public async Task<IActionResult> RegisterAsClient([FromBody]UserForRegisterBidingModel userForRegisterDto)
+=======
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
+>>>>>>> .merge_file_a15820
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
+<<<<<<< .merge_file_a14836
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExist(userForRegisterDto.Email);
+=======
+            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(userForRegisterDto.Email);
+>>>>>>> .merge_file_a15820
 
             if (isEmailAlreadyExisting)
             {
                 return BadRequest();
             }
 
+<<<<<<< .merge_file_a14836
             var hashedPassword = await _PasswordHasherService.HashPassword(userForRegisterDto.Password);
+=======
+            var hashedPassword = await _passwordHasherService.HashPasswordAsync(userForRegisterDto.Password);
+>>>>>>> .merge_file_a15820
            
             
             var user = new ATZBUser
@@ -68,19 +84,26 @@
                 PasswordSalt = hashedPassword.Value
             };
 
+<<<<<<< .merge_file_a14836
             await _userService.CreateUser(user);
+=======
+            await _userService.CreateUserAsync(user);
+>>>>>>> .merge_file_a15820
          
             return Ok();
         }
 
+<<<<<<< .merge_file_a14836
         [HttpPost("registerAsPerformer")]
         public async Task<IActionResult> RegisterAsPerformer()
         {
             return BadRequest("Implementation needed!");
         }
 
+=======
+>>>>>>> .merge_file_a15820
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserForLogInBindingModel userForLogInDto)
+        public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {
             if (!ModelState.IsValid)
             {
@@ -88,7 +111,11 @@
             }
 
             var userAndToken = await _userService
+<<<<<<< .merge_file_a14836
                 .GetUserByUsernameAndPassword(userForLogInDto.Email,userForLogInDto.Password);
+=======
+                .GetUserByEmailAndPasswordAsync(userForLogInDto.Email,userForLogInDto.Password);
+>>>>>>> .merge_file_a15820
 
 
             if (userAndToken.Key == null)
