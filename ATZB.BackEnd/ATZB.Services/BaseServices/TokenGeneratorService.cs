@@ -1,6 +1,4 @@
-﻿using ATZB.Services.BaseServices;
-
-namespace ATZB.Services.ApplicationServices
+﻿namespace ATZB.Services.ApplicationServices
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
@@ -9,6 +7,7 @@ namespace ATZB.Services.ApplicationServices
     using System.Security.Claims;
     using System;
     using System.Threading.Tasks;
+    using ATZB.Services.BaseServices;
 
     public class TokenGeneratorService : ITokenGeneratorService
     {
@@ -20,7 +19,7 @@ namespace ATZB.Services.ApplicationServices
         }
 
 
-        public async Task<string> GenerateJWTAsync(string id, string email)
+        public async Task<string> GenerateJWT(string id, string email)
         {
             string securityKey = _configuration.GetSection("SecurityKey").Value;
 
