@@ -20,11 +20,7 @@ namespace ATZB.Services.ApplicationServices
         }
 
 
-<<<<<<< HEAD:ATZB.BackEnd/ATZB.Services/ApplicationServices/TokenGeneratorService.cs
-        public async Task<string> GenerateJWT(string id, string email)
-=======
         public async Task<string> GenerateJWTAsync(string id, string email)
->>>>>>> 7c8e6dfe4cd09429b90c592825533f30bbe57113:ATZB.BackEnd/ATZB.Services/BaseServices/TokenGeneratorService.cs
         {
             string securityKey = _configuration.GetSection("SecurityKey").Value;
 

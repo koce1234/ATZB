@@ -31,8 +31,13 @@ namespace ATZB.Web.Controllers
             return Ok(getAllUsers);
         } 
 
+<<<<<<< .merge_file_a14836
         [HttpPost("registerAsClient")]
         public async Task<IActionResult> RegisterAsClient([FromBody]UserForRegisterBidingModel userForRegisterDto)
+=======
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
+>>>>>>> .merge_file_a15820
         {
             if (!ModelState.IsValid)
             {
@@ -72,12 +77,15 @@ namespace ATZB.Web.Controllers
             return Ok();
         }
 
+<<<<<<< .merge_file_a14836
         [HttpPost("registerAsPerformer")]
         public async Task<IActionResult> RegisterAsPerformer()
         {
             return BadRequest("Implementation needed!");
         }
 
+=======
+>>>>>>> .merge_file_a15820
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {

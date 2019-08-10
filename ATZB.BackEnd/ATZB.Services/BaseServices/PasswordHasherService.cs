@@ -1,28 +1,14 @@
-<<<<<<< HEAD:ATZB.BackEnd/ATZB.Services/ApplicationServices/PasswordHasherService.cs
-﻿namespace ATZB.Services.ApplicationServices
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Threading.Tasks;
-=======
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
->>>>>>> 7c8e6dfe4cd09429b90c592825533f30bbe57113:ATZB.BackEnd/ATZB.Services/BaseServices/PasswordHasherService.cs
 
 namespace ATZB.Services.BaseServices
 {
     public class PasswordHasherService : IPasswordHasherService
     {
-<<<<<<< HEAD:ATZB.BackEnd/ATZB.Services/ApplicationServices/PasswordHasherService.cs
-        public async Task<KeyValuePair<byte[], byte[]>> HashPassword(string password)
-=======
         public async Task<KeyValuePair<byte[], byte[]>> HashPasswordAsync(string password)
->>>>>>> 7c8e6dfe4cd09429b90c592825533f30bbe57113:ATZB.BackEnd/ATZB.Services/BaseServices/PasswordHasherService.cs
         {
             byte[] salt = new byte[32];
             RNGCryptoServiceProvider.Create().GetBytes(salt);

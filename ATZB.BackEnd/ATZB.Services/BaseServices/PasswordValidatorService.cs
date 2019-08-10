@@ -1,28 +1,14 @@
-<<<<<<< HEAD:ATZB.BackEnd/ATZB.Services/ApplicationServices/PasswordValidatorService.cs
-﻿namespace ATZB.Services.ApplicationServices
-{
-    using System;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Threading.Tasks;
-=======
 ﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
->>>>>>> 7c8e6dfe4cd09429b90c592825533f30bbe57113:ATZB.BackEnd/ATZB.Services/BaseServices/PasswordValidatorService.cs
 
 namespace ATZB.Services.BaseServices
 {
     public class PasswordValidatorService : IPasswordValidatorService
     {
-<<<<<<< HEAD:ATZB.BackEnd/ATZB.Services/ApplicationServices/PasswordValidatorService.cs
-        public async Task<bool> CompareHash(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb)
-=======
         public async Task<bool> CompareHashAsync(string inputedPassword, byte[] passwordFromDb, byte[] saltFromDb)
->>>>>>> 7c8e6dfe4cd09429b90c592825533f30bbe57113:ATZB.BackEnd/ATZB.Services/BaseServices/PasswordValidatorService.cs
         {
             byte[] passwordBytes = UnicodeEncoding.Unicode.GetBytes(inputedPassword);
 
@@ -41,7 +27,7 @@ namespace ATZB.Services.BaseServices
 
             var result = hashPlusSalt.SequenceEqual(passwordFromDb);
 
-            if (result)
+            if (hashPlusSalt.SequenceEqual(passwordFromDb))
             {
                 return true;
             }
