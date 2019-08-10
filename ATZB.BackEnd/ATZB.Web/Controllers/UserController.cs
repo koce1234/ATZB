@@ -6,11 +6,6 @@ using Microsoft.AspNetCore.Http;
 
 namespace ATZB.Web.Controllers
 {
-    using System.Threading.Tasks;
-    using ATZB.Domain;
-    using ATZB.Services.ApplicationServices;
-    using ATZB.Web.Controllers.Dto_s;
-    using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -34,10 +29,10 @@ namespace ATZB.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-            var getAllUsers = await _userService.GetAllUsersAsync();
+            var getAllUsers = await _userService.GetAllUsers();
 
             return Ok(getAllUsers);
-        } 
+        }
 
 
         [HttpPost("RegisterClient")]
@@ -235,7 +230,7 @@ namespace ATZB.Web.Controllers
             }
 
             var userAndToken = await _userService
-                .GetUserByEmailAndPasswordAsync(userForLogInDto.Email,userForLogInDto.Password);
+                .GetUserByUsernameAndPassword(userForLogInDto.Email, userForLogInDto.Password);
 
 
             if (userAndToken.Key == null)

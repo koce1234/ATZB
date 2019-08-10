@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ATZB.Data;
 using ATZB.Data.DataContext;
 using ATZB.Domain;
 using ATZB.Services.BaseServices;
@@ -27,7 +26,7 @@ namespace ATZB.Services.ApplicationServices
             _tokenGeneratorService = tokenGeneratorService;
         }
 
-        public async Task<ATZBUser> CreateUserAsync(ATZBUser user)
+        public async Task<ATZBUser> CreateUser(ATZBUser user)
         {
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
@@ -35,13 +34,13 @@ namespace ATZB.Services.ApplicationServices
             return user;
         }
 
-        public async Task<List<ATZBUser>> GetAllUsersAsync()
+        public async Task<List<ATZBUser>> GetAllUsers()
         {
             var users = await _dbContext.Users.ToListAsync();
             return users;
         }
 
-        public async Task<KeyValuePair<ATZBUser,string>> GetUserByEmailAndPasswordAsync(string email, string password)
+        public async Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPassword(string email, string password)
         {
             
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
@@ -53,11 +52,11 @@ namespace ATZB.Services.ApplicationServices
             }
 
             var validatePassword =  _passwordValidator
-               .CompareHashAsync(password , user.PasswordHash , user.PasswordSalt).Result;
+                .CompareHashAsync(password , user.PasswordHash , user.PasswordSalt).Result;
 
             if (validatePassword)
             {
-                var token = await _tokenGeneratorService.GenerateJWTAsync(user.Id, user.Email);
+                var token = await _tokenGeneratorService.GenerateJWT(user.Id, user.Email);
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(user, token);
                 return keyValue;
 
@@ -69,7 +68,7 @@ namespace ATZB.Services.ApplicationServices
             }
         }
 
-        public async Task<bool> EmailAlreadyExistAsync(string email) 
+        public async Task<bool> EmailAlreadyExist(string email) 
             => await _dbContext.Users.AnyAsync(x => x.Email == email);
     }
 }

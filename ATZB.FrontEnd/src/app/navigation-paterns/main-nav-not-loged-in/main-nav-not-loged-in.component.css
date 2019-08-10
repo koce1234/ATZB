@@ -1,0 +1,30 @@
+.user-buttons{
+    position: absolute;
+    right: 20px;
+}
+
+.user-signIn{
+    margin-left: 10px;
+}
+
+.user-signUp{
+    margin-left: 10px;
+}
+
+.register-menu{
+    margin: 5px;
+}
+
+.a-link-corr {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-btn {
+    color: black;
+    text-decoration: none;
+}
+
+mat-menu button a {
+    color: black;
+}

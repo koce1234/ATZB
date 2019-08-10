@@ -59,9 +59,10 @@ namespace ATZB.Web
             app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials());
+
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
     }
 }
-
