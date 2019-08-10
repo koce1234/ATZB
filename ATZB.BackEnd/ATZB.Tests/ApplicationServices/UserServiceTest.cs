@@ -108,7 +108,8 @@ namespace ATZB.Tests.ApplicationServices
             context.SaveChanges();
         }
 
-        public List<ATZBUser> DataForSeedUsers => new List<ATZBUser>(){new ATZBUser(),new ATZBUser(), new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() };
+        public List<ATZBUser> DataForSeedUsers => new List<ATZBUser>()
+            { new ATZBUser(),new ATZBUser(), new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() , new ATZBUser(), new ATZBUser() };
 
     }
 }

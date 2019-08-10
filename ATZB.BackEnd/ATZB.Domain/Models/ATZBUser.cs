@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ATZB.Domain.Models;
 
 namespace ATZB.Domain
 {
@@ -13,43 +14,51 @@ namespace ATZB.Domain
             this.Orders = new HashSet<ATZBOrder>();
 
             this.Offers = new HashSet<ATZBOffert>();
+
+            this.TypeOfSpecials  = new HashSet<TypeOfSpecial>();
+
+            this.ATZBUserImages = new HashSet<string>();
         }
 
         public string Id { get; set; }
-        //a1,a2
-        //b1
-        public string Name { get; set; }
-        //a1,a2
-        //b1
+
+        public string CompanyName  { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         public string Adress { get; set; }
-        //a1
-        //b1
+       
         public string EGN { get; set; }
-        //a1
-        //b1
+        
         public string LKNummber { get; set; }
-        //a1,a2
-        //b1
+       
         public string Phone { get; set; }
-        //a1,a2
-        //b1
+       
         public string ENK { get; set; }
         
         public string DDSNumber { get; set; }
-        //b1
+
+        public string Mol { get; set; }
+      
         public string RegKSB { get; set; }
-        //a1,a2
-        //b1
+        
         public bool AnyObligations { get; set; }
 
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }
-        //a1,a2
+       
         public string Email { get; set; }
+
+        public ICollection<TypeOfSpecial> TypeOfSpecials { get; set; }
+
+        public ICollection<string> ATZBUserImages { get; set; }
 
         public UserType UserType { get; set; }
 
+        public Cities City { get; set; }
       
         public ICollection<ATZBOffert> Offers { get; set; }
 

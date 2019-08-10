@@ -16,12 +16,6 @@ namespace ATZB.Web.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        //TODO :
-        //1 .GetAllOrders
-        //2 . Add
-        //3 .ReturnAllbyUserId
-        //4 . FilterBy
-        //5. AllOrdersByCity
         
         private readonly IOrderService _orderService;
 
@@ -40,7 +34,7 @@ namespace ATZB.Web.Controllers
             return Ok(allOrders);
         }
 
-        [HttpPost("register")]
+        [HttpPost("AddOrder")]
         public async Task<IActionResult> AddOrderAsync([FromBody]AddOrderBindingModel addOrderBindingModel)
         {
             if (!ModelState.IsValid)
