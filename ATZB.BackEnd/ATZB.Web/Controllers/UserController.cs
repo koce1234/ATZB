@@ -31,8 +31,8 @@ namespace ATZB.Web.Controllers
             return Ok(getAllUsers);
         } 
 
-        [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]UserForRegisterBidingModel userForRegisterDto)
+        [HttpPost("registerAsClient")]
+        public async Task<IActionResult> RegisterAsClient([FromBody]UserForRegisterBidingModel userForRegisterDto)
         {
             if (!ModelState.IsValid)
             {
@@ -70,6 +70,12 @@ namespace ATZB.Web.Controllers
             await _userService.CreateUserAsync(user);
          
             return Ok();
+        }
+
+        [HttpPost("registerAsPerformer")]
+        public async Task<IActionResult> RegisterAsPerformer()
+        {
+            return BadRequest("Implementation needed!");
         }
 
         [HttpPost("login")]

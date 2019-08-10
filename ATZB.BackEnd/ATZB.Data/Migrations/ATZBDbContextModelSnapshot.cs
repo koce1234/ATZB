@@ -34,6 +34,8 @@ namespace ATZB.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Offerts");
                 });
 
@@ -57,6 +59,8 @@ namespace ATZB.Data.Migrations
 
                     b.HasIndex("TypeId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Orders");
                 });
 
@@ -65,9 +69,9 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Adress");
-
                     b.Property<bool>("AnyObligations");
+
+                    b.Property<string>("City");
 
                     b.Property<string>("DDSNumber");
 
@@ -77,9 +81,11 @@ namespace ATZB.Data.Migrations
 
                     b.Property<string>("Email");
 
+                    b.Property<string>("FirstName");
+
                     b.Property<string>("LKNummber");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("LastName");
 
                     b.Property<byte[]>("PasswordHash");
 
@@ -89,41 +95,13 @@ namespace ATZB.Data.Migrations
 
                     b.Property<string>("RegKSB");
 
+                    b.Property<string>("StreetAddress");
+
                     b.Property<int>("UserType");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ATZB.Domain.ATZBUserOffert", b =>
-                {
-                    b.Property<string>("OffertId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("OffertId", "UserId");
-
-                    b.HasIndex("OffertId")
-                        .IsUnique();
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserOfferts");
-                });
-
-            modelBuilder.Entity("ATZB.Domain.ATZBUserOrder", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("OrderId");
-
-                    b.HasKey("UserId", "OrderId");
-
-                    b.HasIndex("OrderId")
-                        .IsUnique();
-
-                    b.ToTable("UserOrders");
                 });
 
             modelBuilder.Entity("ATZB.Domain.TypeOfOrder", b =>
@@ -136,37 +114,22 @@ namespace ATZB.Data.Migrations
                     b.ToTable("TypeOfOrder");
                 });
 
+            modelBuilder.Entity("ATZB.Domain.ATZBOffert", b =>
+                {
+                    b.HasOne("ATZB.Domain.ATZBUser", "User")
+                        .WithMany("Offers")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("ATZB.Domain.ATZBOrder", b =>
                 {
                     b.HasOne("ATZB.Domain.TypeOfOrder", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId");
-                });
-
-            modelBuilder.Entity("ATZB.Domain.ATZBUserOffert", b =>
-                {
-                    b.HasOne("ATZB.Domain.ATZBOffert", "Offert")
-                        .WithOne("User")
-                        .HasForeignKey("ATZB.Domain.ATZBUserOffert", "OffertId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ATZB.Domain.ATZBUser", "User")
-                        .WithMany("Offers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ATZB.Domain.ATZBUserOrder", b =>
-                {
-                    b.HasOne("ATZB.Domain.ATZBOrder", "Order")
-                        .WithOne("User")
-                        .HasForeignKey("ATZB.Domain.ATZBUserOrder", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ATZB.Domain.ATZBUser", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

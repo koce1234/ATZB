@@ -49,9 +49,7 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
-            services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
-using ATZB.Data.DataContext;
-using ATZB.Services.BaseServices;
+            services.AddTransient<IUserService, UserService>();
 
 namespace ATZB.Web
 {
@@ -98,11 +96,9 @@ namespace ATZB.Web
                         });
 
 
-            services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
-            services.AddTransient<IPasswordHasherService, PasswordHasherService>();
-            services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
-            services.AddTransient<IUserService, UserService>();
+            app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
         }
 

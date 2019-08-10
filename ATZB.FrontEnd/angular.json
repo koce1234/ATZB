@@ -3,13 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Something": {
+    "ATZB": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Something",
+            "outputPath": "dist/ATZB",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -62,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Something:build"
+            "browserTarget": "ATZB:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Something:build:production"
+              "browserTarget": "ATZB:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Something:build"
+            "browserTarget": "ATZB:build"
           }
         },
         "test": {
@@ -88,7 +84,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -110,15 +106,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Something:serve"
+            "devServerTarget": "ATZB:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Something:serve:production"
+              "devServerTarget": "ATZB:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "Something"
+  "defaultProject": "ATZB"
 }

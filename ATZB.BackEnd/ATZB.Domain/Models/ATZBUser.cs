@@ -18,10 +18,14 @@ namespace ATZB.Domain
         public string Id { get; set; }
         //a1,a2
         //b1
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
         //a1,a2
         //b1
-        public string Adress { get; set; }
+        public string StreetAddress { get; set; }
+
+        public string City { get; set; }
         //a1
         //b1
         public string EGN { get; set; }

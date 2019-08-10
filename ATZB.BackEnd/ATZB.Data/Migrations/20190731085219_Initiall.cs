@@ -38,7 +38,7 @@ namespace ATZB.Data.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Adress = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
                     EGN = table.Column<string>(nullable: true),
                     LKNummber = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
