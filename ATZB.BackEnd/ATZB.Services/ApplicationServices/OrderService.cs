@@ -43,7 +43,7 @@ namespace ATZB.Services.ApplicationServices
             return order;
         }
 
-        public async Task<List<ATZBOrder>> GetAllOrderByUserId(string userId)
+        public async Task<List<ATZBOrder>> GetAllOrderByUserIdAsync(string userId)
             => await _dbContext.Orders.Where(u => u.UserId == userId).ToListAsync();
     }
 }

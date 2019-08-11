@@ -27,7 +27,7 @@ namespace ATZB.Web.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllOrders()
+        public async Task<IActionResult> GetAllOrdersAsync()
         {
             var allOrders = await _orderService.GetAllOrdersAsync();
 
@@ -47,7 +47,7 @@ namespace ATZB.Web.Controllers
                Description = addOrderBindingModel.Description,
                PriceTo = addOrderBindingModel.PriceTo,
                Town = addOrderBindingModel.Town,
-               Type = addOrderBindingModel.Type
+               TypeForOrder = addOrderBindingModel.TypeOfOrder
             };
 
             await _orderService.RegisterOrderAsync(order);
@@ -57,9 +57,9 @@ namespace ATZB.Web.Controllers
 
         //TODO: RADO NEED CHECK
         [HttpGet]
-        public async Task<IActionResult> ReturnAllOrdersByUserId(string userId)
+        public async Task<IActionResult> ReturnAllOrdersByUserIdAsync(string userId)
         {
-            var orders = await _orderService.GetAllOrderByUserId(userId);
+            var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
 
             return Ok(orders);
         } 

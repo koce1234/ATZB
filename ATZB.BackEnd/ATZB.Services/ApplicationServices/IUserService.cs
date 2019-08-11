@@ -6,13 +6,13 @@
 
     public interface IUserService
     {
-        Task<ATZBUser> CreateUser(ATZBUser user);
+        Task<ATZBUser> CreateUserAsync(ATZBUser user);
 
-        Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPassword(string email, string password);
+        Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPasswordAsync(string email, string password);
 
-        Task<List<ATZBUser>> GetAllUsers();
+        Task<List<ATZBUser>> GetAllUsersAsync();
 
-        Task<bool> EmailAlreadyExist(string email);
+        Task<bool> EmailAlreadyExistAsync(string email);
     }
 }
 

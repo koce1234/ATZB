@@ -1,5 +1,6 @@
 using ATZB.Data.DataContext;
 using ATZB.Services.BaseServices;
+using CloudinaryDotNet;
 
 namespace ATZB.Web
 {
@@ -26,6 +27,7 @@ namespace ATZB.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             string securityKey = _configuration.GetSection("SecurityKey").Value;
             var symetricSecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(securityKey));
 
@@ -48,8 +50,10 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
+            services.AddTransient<ICloudDinaryService , CloudDinaryService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IUserService, UserService>();
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

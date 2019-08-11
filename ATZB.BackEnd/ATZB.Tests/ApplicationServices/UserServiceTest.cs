@@ -23,10 +23,10 @@ namespace ATZB.Tests.ApplicationServices
 
             UserService userService = new UserService(context);
 
-            SeedDbWithUsers(context);
+            SeedDbWithUsers(context ,DataForSeedUsers);
 
             int expectedUserCount = context.Users.Count();
-            int actualUserCount = userService.GetAllUsers().Result.Count;
+            int actualUserCount = userService.GetAllUsersAsync().Result.Count;
 
             Assert.Equal(expectedUserCount, actualUserCount);
             
@@ -44,7 +44,7 @@ namespace ATZB.Tests.ApplicationServices
 
             int expectedUsersCount = context.Users.Count() + 1;
 
-           await userService.CreateUser(new ATZBUser());
+           await userService.CreateUserAsync(new ATZBUser());
            int actualUsersCount = context.Users.Count();
 
             Assert.Equal(expectedUsersCount,actualUsersCount);
@@ -68,10 +68,10 @@ namespace ATZB.Tests.ApplicationServices
             ATZBUser expectedUser = new ATZBUser() {Email = emailForTest 
                 ,PasswordHash = passwordHashed.Key 
                 , PasswordSalt = passwordHashed.Value};
-            SeedDbWithUsers(context);
-            await userService.CreateUser(expectedUser);
+            SeedDbWithUsers(context, DataForSeedUsers);
+            await userService.CreateUserAsync(expectedUser);
 
-            var actualUser = userService.GetUserByUsernameAndPassword(emailForTest, passwordForTest).Result.Key;
+            var actualUser = userService.GetUserByUsernameAndPasswordAsync(emailForTest, passwordForTest).Result.Key;
             
             Assert.Equal(expectedUser , actualUser);
         }
@@ -86,7 +86,7 @@ namespace ATZB.Tests.ApplicationServices
 
             UserService userService = new UserService(context);
             string emailForCheck = "test@abv.bg";
-            SeedDbWithUsers(context);
+            SeedDbWithUsers(context , DataForSeedUsers);
            
             context.Users
                 .AddRange(
@@ -98,13 +98,13 @@ namespace ATZB.Tests.ApplicationServices
             context.SaveChanges();
 
 
-            Assert.True(userService.EmailAlreadyExist(emailForCheck).Result);
+            Assert.True(userService.EmailAlreadyExistAsync(emailForCheck).Result);
 
         }
 
-        public void SeedDbWithUsers(ATZBDbContext context)
+        public void SeedDbWithUsers(ATZBDbContext context, List<ATZBUser> users)
         {
-            context.AddRange();
+            context.Users.AddRange(users);
             context.SaveChanges();
         }
 

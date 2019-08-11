@@ -11,6 +11,6 @@ namespace ATZB.Services.ApplicationServices
 
         Task<ATZBOrder> RegisterOrderAsync(ATZBOrder order);
 
-        Task<List<ATZBOrder>> GetAllOrderByUserId(string userId);
+        Task<List<ATZBOrder>> GetAllOrderByUserIdAsync(string userId);
     }
 }

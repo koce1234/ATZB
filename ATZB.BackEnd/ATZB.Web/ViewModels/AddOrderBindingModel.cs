@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ATZB.Domain;
+using ATZB.Domain.Models;
 
 namespace ATZB.Web.ViewModels
 {
@@ -14,6 +15,6 @@ namespace ATZB.Web.ViewModels
 
         public string Town { get; set; }
 
-        public TypeOfOrder Type { get; set; }
+        public TypeOfSpecial TypeOfOrder { get; set; }
     }
 }

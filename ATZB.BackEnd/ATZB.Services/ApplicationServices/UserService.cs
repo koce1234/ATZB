@@ -26,7 +26,7 @@ namespace ATZB.Services.ApplicationServices
             _tokenGeneratorService = tokenGeneratorService;
         }
 
-        public async Task<ATZBUser> CreateUser(ATZBUser user)
+        public async Task<ATZBUser> CreateUserAsync(ATZBUser user)
         {
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
@@ -34,13 +34,13 @@ namespace ATZB.Services.ApplicationServices
             return user;
         }
 
-        public async Task<List<ATZBUser>> GetAllUsers()
+        public async Task<List<ATZBUser>> GetAllUsersAsync()
         {
             var users = await _dbContext.Users.ToListAsync();
             return users;
         }
 
-        public async Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPassword(string email, string password)
+        public async Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPasswordAsync(string email, string password)
         {
             
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
@@ -56,7 +56,7 @@ namespace ATZB.Services.ApplicationServices
 
             if (validatePassword)
             {
-                var token = await _tokenGeneratorService.GenerateJWT(user.Id, user.Email);
+                var token = await _tokenGeneratorService.GenerateJWTAsync(user.Id, user.Email);
                 KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(user, token);
                 return keyValue;
 
@@ -68,7 +68,7 @@ namespace ATZB.Services.ApplicationServices
             }
         }
 
-        public async Task<bool> EmailAlreadyExist(string email) 
+        public async Task<bool> EmailAlreadyExistAsync(string email) 
             => await _dbContext.Users.AnyAsync(x => x.Email == email);
     }
 }

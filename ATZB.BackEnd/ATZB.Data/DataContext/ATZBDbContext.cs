@@ -1,4 +1,5 @@
 ﻿using ATZB.Domain;
+using ATZB.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ATZB.Data.DataContext
@@ -10,6 +11,10 @@ namespace ATZB.Data.DataContext
         public DbSet<ATZBUser> Users { get; set; }
 
         public DbSet<ATZBOffert> Offerts { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<TypeSpecial> TypeOfSpecials { get; set; }
 
        
         public ATZBDbContext(DbContextOptions<ATZBDbContext> options) :base(options)

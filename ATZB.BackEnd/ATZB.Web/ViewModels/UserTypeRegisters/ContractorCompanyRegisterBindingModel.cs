@@ -38,6 +38,7 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
         public string Email { get; set; }
 
         public ICollection<TypeOfSpecial> TypeOfSpecials { get; set; }
+
         public ICollection<IFormFile> Images { get; set; }
         //MustUploadFiles
     }

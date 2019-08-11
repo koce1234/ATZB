@@ -1,8 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ATZB.Domain;
+using ATZB.Domain.Models;
+using ATZB.Services.ApplicationServices;
 using ATZB.Services.BaseServices;
+using ATZB.Web.Controllers.Dto_s;
 using ATZB.Web.ViewModels;
 using ATZB.Web.ViewModels.UserTypeRegisters;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ATZB.Web.Controllers
 {
@@ -29,7 +37,7 @@ namespace ATZB.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsersAsync()
         {
-            var getAllUsers = await _userService.GetAllUsers();
+            var getAllUsers = await _userService.GetAllUsersAsync();
 
             return Ok(getAllUsers);
         }
@@ -133,17 +141,30 @@ namespace ATZB.Web.Controllers
 
             uploadedImages.AddRange(contractorCompanyForRegisterBM.Images);
 
-            List<string> uploadedImagesLinks = new List<string>();
+            
 
-            foreach (var uploadedImage in uploadedImages)
-            {
-                string newImageName = contractorCompanyForRegisterBM.CompanyName;
-                string imageLink =  await _cloudinaryService.CreateImageAsync(uploadedImage , newImageName);
-                uploadedImagesLinks.Add(imageLink);
-            }
+            List<string> uploadedImagesLinks = GetLinks
+                (
+                    uploadedImages
+                    , contractorCompanyForRegisterBM.CompanyName
+                )
+                .Result;
+
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(contractorCompanyForRegisterBM.Password);
 
+            var kur = new List<Image>();
+            var typeofspecials = new List<TypeSpecial>();
+            
+            foreach (var uploadedImagesLink in uploadedImagesLinks)
+            {
+                kur.Add(new Image(uploadedImagesLink));
+            }
+
+            foreach (var typeofspecial in contractorCompanyForRegisterBM.TypeOfSpecials)
+            {
+                typeofspecials.Add(new TypeSpecial(typeofspecial));
+            }
 
             var user = new ATZBUser
             {
@@ -156,11 +177,12 @@ namespace ATZB.Web.Controllers
                 AnyObligations = contractorCompanyForRegisterBM.AnyObligations,
                 PasswordHash = hashedPassword.Key,
                 PasswordSalt = hashedPassword.Value,
-                TypeOfSpecials = contractorCompanyForRegisterBM.TypeOfSpecials,
                 City = contractorCompanyForRegisterBM.City,
-                ATZBUserImages = uploadedImagesLinks,
-                Email = contractorCompanyForRegisterBM.Email
+                Email = contractorCompanyForRegisterBM.Email,
+                ImagesLinks = kur,
+                TypeOfSpecials = typeofspecials
             };
+
 
             await _userService.CreateUserAsync(user);
 
@@ -186,18 +208,31 @@ namespace ATZB.Web.Controllers
 
             uploadedImages.AddRange(privatePersonForRegisterBM.Images);
 
-            List<string> uploadedImagesLinks = new List<string>();
+            List<string> uploadedImagesLinks = GetLinks
+                    (
+                      uploadedImages
+                    , privatePersonForRegisterBM.FirstName + "/" + privatePersonForRegisterBM.LastName
+                    
+                    )
+                     .Result;
 
-            foreach (var uploadedImage in uploadedImages)
-            {
-                string newImageName = privatePersonForRegisterBM.FirstName + "/" + privatePersonForRegisterBM.LastName;
-                string imageLink = await _cloudinaryService.CreateImageAsync(uploadedImage, newImageName);
-                uploadedImagesLinks.Add(imageLink);
-            }
+            
 
             
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(privatePersonForRegisterBM.Password);
 
+            var kur = new List<Image>();
+            var typeofspecials = new List<TypeSpecial>();
+
+            foreach (var uploadedImagesLink in uploadedImagesLinks)
+            {
+                kur.Add(new Image(uploadedImagesLink));
+            }
+
+            foreach (var typeofspecial in privatePersonForRegisterBM.TypeOfSpecials)
+            {
+                typeofspecials.Add(new TypeSpecial(typeofspecial));
+            }
 
             var user = new ATZBUser
             {
@@ -207,14 +242,16 @@ namespace ATZB.Web.Controllers
                 EGN = privatePersonForRegisterBM.EGN,
                 LKNummber = privatePersonForRegisterBM.LkNumber,
                 AnyObligations = privatePersonForRegisterBM.AnyObligations,
-                TypeOfSpecials = privatePersonForRegisterBM.TypeOfSpecials,
                 PasswordHash = hashedPassword.Key,
                 PasswordSalt = hashedPassword.Value,
-                ATZBUserImages = uploadedImagesLinks,
                 City = privatePersonForRegisterBM.City,
-                Email = privatePersonForRegisterBM.Email
+                Email = privatePersonForRegisterBM.Email,
+                ImagesLinks = kur,
+                TypeOfSpecials = typeofspecials
             };
-
+           
+            
+            
             await _userService.CreateUserAsync(user);
 
             return Ok();
@@ -230,7 +267,7 @@ namespace ATZB.Web.Controllers
             }
 
             var userAndToken = await _userService
-                .GetUserByUsernameAndPassword(userForLogInDto.Email, userForLogInDto.Password);
+                .GetUserByUsernameAndPasswordAsync(userForLogInDto.Email, userForLogInDto.Password);
 
 
             if (userAndToken.Key == null)
@@ -243,5 +280,23 @@ namespace ATZB.Web.Controllers
             }
         }
 
+
+        private async Task<List<string>> GetLinks(List<IFormFile> images , string fullName )
+        {
+            List<IFormFile> uploadedImages = new List<IFormFile>();
+
+            uploadedImages.AddRange(images);
+
+            List<string> uploadedImagesLinks = new List<string>();
+
+            foreach (var uploadedImage in uploadedImages)
+            {
+                string newImageName = fullName;
+                string imageLink =  await _cloudinaryService.CreateImageAsync(uploadedImage, newImageName);
+                uploadedImagesLinks.Add(imageLink);
+            }
+
+            return uploadedImagesLinks;
+        }
     }
 }

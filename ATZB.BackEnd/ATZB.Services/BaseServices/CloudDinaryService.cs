@@ -14,22 +14,22 @@ namespace ATZB.Services.BaseServices
     {
 
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly Cloudinary _cloudinaryUtility;
+        private readonly Cloudinary _clouDinaryUtility;
 
         public CloudDinaryService(IHostingEnvironment hostingEnvironment,
-            Cloudinary cloudinaryUtility)
+            Cloudinary clouDinaryUtility)
         {
-            this._cloudinaryUtility = cloudinaryUtility;
+            this._clouDinaryUtility = clouDinaryUtility;
             this._hostingEnvironment = hostingEnvironment;
         }
 
-        public async Task<string> CreateImageAsync(IFormFile formImage, string fileName)
+        public async Task<string> CreateImageAsync(IFormFile formFile, string fileName)
         {
             byte[] destinationData;
 
             using (var ms = new MemoryStream())
             {
-                await formImage.CopyToAsync(ms);
+                await formFile.CopyToAsync(ms);
                 destinationData = ms.ToArray();
             }
 
@@ -43,7 +43,7 @@ namespace ATZB.Services.BaseServices
                     File = new FileDescription(fileName, ms)
                 };
 
-                uploadResult = this._cloudinaryUtility.Upload(uploadParams);
+                uploadResult = this._clouDinaryUtility.Upload(uploadParams);
 
             }
 
