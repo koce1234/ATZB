@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using ATZB.Domain;
 using ATZB.Domain.Models;
 
-namespace ATZB.Web.ViewModels
-{
     public class AddOrderBindingModel
     {
         public string Description { get; set; }

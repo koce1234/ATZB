@@ -1,31 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ATZB.Data;
-using ATZB.Data.DataContext;
-using ATZB.Domain;
-using ATZB.Services.ApplicationServices;
-using ATZB.Web.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ATZB.Web.Controllers
+﻿namespace ATZB.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using ATZB.Domain;
+    using ATZB.Services.ApplicationServices;
+    using ATZB.Web.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
-        
         private readonly IOrderService _orderService;
 
         public OrderController(IOrderService orderService)
         {
-          
             this._orderService = orderService;
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllOrdersAsync()
         {
@@ -34,14 +27,40 @@ namespace ATZB.Web.Controllers
             return Ok(allOrders);
         }
 
-        [HttpPost("AddOrder")]
+
+        //TODO: RADO NEED CHECK
+        [Authorize]
+        [HttpGet("myOrders")]
+        public async Task<IActionResult> ReturnAllOrdersByUserId([FromHeader]string userId)
+        {
+            var orders = await _orderService.GetAllOrderByUserId(userId);
+
+            return Ok(orders);
+        }
+
+        [Authorize]
+        [HttpGet("filterBy")]
+        public async Task<IActionResult> FilterBy()
+        {
+            return BadRequest("Not implemented yet!");
+        }
+
+        [Authorize]
+        [HttpGet("orderByCity")]
+        public async Task<IActionResult> OrderByCity(string city)
+        {
+            return BadRequest("Not implemented yet!");
+        }
+
+        [Authorize]
+        [HttpPost("addOrder")]
         public async Task<IActionResult> AddOrderAsync([FromBody]AddOrderBindingModel addOrderBindingModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-           
+
             var order = new ATZBOrder
             {
                Description = addOrderBindingModel.Description,

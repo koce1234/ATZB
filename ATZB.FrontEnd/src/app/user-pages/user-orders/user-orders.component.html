@@ -1,0 +1,38 @@
+<div class="page-style">
+    <p>user-orders works!</p>
+    <h1>KUR KUR KUR KUR KUR</h1>
+    <div class="header">
+        <button type="button" (click)="addOrder()">Add order</button>
+        <button type="button" (click)="showMyOrders()">My orders</button>
+    </div>
+    <div class="orders-sections">
+        <div *ngIf="showAllOrdersForm">
+            <ul *ngFor="let items of allOrders">
+                <li>{{items}}</li>
+            </ul>
+        </div>
+        <div *ngIf="showAddOrderForm">
+            <form [formGroup]="addOrderFormGroup">
+                <mat-form-field>
+                    <input matInput formControlName="priceTo" placeholder="Price up to">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="town" placeholder="Town">
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea 
+                        matInput 
+                        rows="10" 
+                        cols="70" 
+                        formControlName="description" 
+                        placeholder="Description"></textarea>
+                </mat-form-field>
+                <button (click)="submitOrder()" color="primary">Submit</button>
+            </form>
+        </div>
+        <div *ngIf="showMyOrdersForm">
+
+        </div>
+    </div>
+</div>
+

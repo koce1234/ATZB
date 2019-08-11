@@ -276,7 +276,7 @@ namespace ATZB.Web.Controllers
             }
             else
             {
-                return Ok(new { userAndToken.Value });
+                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id });
             }
         }
 

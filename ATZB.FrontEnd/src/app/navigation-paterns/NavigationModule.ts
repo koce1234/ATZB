@@ -10,12 +10,18 @@ import { UserRegisterAsClientComponent } from '../user-pages/user-register-as-cl
 import { UserRegisterAsPerformerComponent } from '../user-pages/user-register-as-performer/user-register-as-performer.component';
 import { HomePageComponent } from '../sheard/home-page/home-page.component';
 import { PageNotFoundComponent } from '../sheard/page-not-found/page-not-found.component';
+import { UserOrdersComponent } from '../user-pages/user-orders/user-orders.component';
+import { UserOffersToMeComponent } from '../user-pages/user-offers-to-me/user-offers-to-me.component';
+import { UserComponent } from '../user-pages/user/user.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'registerAsClient', component: UserRegisterAsClientComponent },
   { path: 'registeAsPerformer', component: UserRegisterAsPerformerComponent },
   { path: 'login', component: UserLoginComponent },
+  { path: 'orders', component: UserOrdersComponent },
+  { path: 'offersToMe', component: UserOffersToMeComponent  },
+  { path: 'profile', component: UserComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
