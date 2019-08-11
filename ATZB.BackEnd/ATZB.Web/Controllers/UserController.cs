@@ -153,18 +153,7 @@ namespace ATZB.Web.Controllers
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(contractorCompanyForRegisterBM.Password);
 
-            var kur = new List<Image>();
-            var typeofspecials = new List<TypeSpecial>();
             
-            foreach (var uploadedImagesLink in uploadedImagesLinks)
-            {
-                kur.Add(new Image(uploadedImagesLink));
-            }
-
-            foreach (var typeofspecial in contractorCompanyForRegisterBM.TypeOfSpecials)
-            {
-                typeofspecials.Add(new TypeSpecial(typeofspecial));
-            }
 
             var user = new ATZBUser
             {
@@ -179,8 +168,8 @@ namespace ATZB.Web.Controllers
                 PasswordSalt = hashedPassword.Value,
                 City = contractorCompanyForRegisterBM.City,
                 Email = contractorCompanyForRegisterBM.Email,
-                ImagesLinks = kur,
-                TypeOfSpecials = typeofspecials
+                ImagesLinks = FillImagesCollection(uploadedImagesLinks),
+                TypeOfSpecials = FillTypeSpecialCollection(contractorCompanyForRegisterBM.TypeOfSpecials)
             };
 
 
@@ -220,19 +209,9 @@ namespace ATZB.Web.Controllers
 
             
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(privatePersonForRegisterBM.Password);
-
-            var kur = new List<Image>();
-            var typeofspecials = new List<TypeSpecial>();
-
-            foreach (var uploadedImagesLink in uploadedImagesLinks)
-            {
-                kur.Add(new Image(uploadedImagesLink));
-            }
-
-            foreach (var typeofspecial in privatePersonForRegisterBM.TypeOfSpecials)
-            {
-                typeofspecials.Add(new TypeSpecial(typeofspecial));
-            }
+            
+            
+            
 
             var user = new ATZBUser
             {
@@ -246,8 +225,8 @@ namespace ATZB.Web.Controllers
                 PasswordSalt = hashedPassword.Value,
                 City = privatePersonForRegisterBM.City,
                 Email = privatePersonForRegisterBM.Email,
-                ImagesLinks = kur,
-                TypeOfSpecials = typeofspecials
+                ImagesLinks = FillImagesCollection(uploadedImagesLinks),
+                TypeOfSpecials = FillTypeSpecialCollection(privatePersonForRegisterBM.TypeOfSpecials)
             };
            
             
@@ -298,5 +277,35 @@ namespace ATZB.Web.Controllers
 
             return uploadedImagesLinks;
         }
+
+
+        private List<Image> FillImagesCollection(List<string> uploadedImagesLinks)
+        {
+            var imagesCollection = new List<Image>();
+            
+
+            foreach (var uploadedImagesLink in uploadedImagesLinks)
+            {
+                imagesCollection.Add(new Image(uploadedImagesLink));
+            }
+
+            return imagesCollection;
+        }
+
+        private List<TypeSpecial> FillTypeSpecialCollection(ICollection<TypeOfSpecial> typeSpecials)
+        {
+            var typeSpecialsCollection = new List<TypeSpecial>();
+
+
+            foreach (var typeSpecial in typeSpecials)
+            {
+                typeSpecialsCollection.Add(new TypeSpecial(typeSpecial));
+            }
+
+            return typeSpecialsCollection;
+        }
+       
+
+
     }
 }

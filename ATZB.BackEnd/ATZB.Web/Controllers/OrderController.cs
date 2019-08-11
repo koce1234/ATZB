@@ -1,4 +1,6 @@
-﻿namespace ATZB.Web.Controllers
+﻿using ATZB.Domain.Models;
+
+namespace ATZB.Web.Controllers
 {
     using System.Threading.Tasks;
     using ATZB.Domain;
@@ -33,7 +35,7 @@
         [HttpGet("myOrders")]
         public async Task<IActionResult> ReturnAllOrdersByUserId([FromHeader]string userId)
         {
-            var orders = await _orderService.GetAllOrderByUserId(userId);
+            var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
 
             return Ok(orders);
         }
