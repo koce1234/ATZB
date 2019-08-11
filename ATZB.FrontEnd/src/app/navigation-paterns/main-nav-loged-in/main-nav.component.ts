@@ -18,4 +18,9 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+
+  logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+  }
 }

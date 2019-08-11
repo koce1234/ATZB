@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as httpUrls from '../../sheard/url`s/urls';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { KeyValue } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -12,7 +12,7 @@ import { KeyValue } from '@angular/common';
 export class UserLoginComponent implements OnInit {
   logInInput: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.logInInput = new FormGroup({
@@ -35,7 +35,11 @@ export class UserLoginComponent implements OnInit {
     if(this.logInInput.valid){
       this.http.post(httpUrls.userLogin, this.logInInput.value, requestOptions)
         .subscribe(
-          (next: KeyValue<string, string>) => localStorage.setItem('token', next.value),
+          (next: { token: string, userId: string }) => {
+            localStorage.setItem('token', next.token);
+            localStorage.setItem('userId', next.userId);
+            this.router.navigate(['']);
+          },
           (error) => console.log(error),
           () => console.log('kur')
       );

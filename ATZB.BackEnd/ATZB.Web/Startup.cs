@@ -48,6 +48,7 @@ namespace ATZB.Web
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -59,7 +60,7 @@ namespace ATZB.Web
             app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin().AllowCredentials());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();

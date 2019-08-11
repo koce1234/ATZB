@@ -2,6 +2,11 @@
   height: 100%;
 }
 
+.a-link-corr {
+  color: white;
+  text-decoration: none;
+}
+
 .sidenav {
   width: 200px;
 }

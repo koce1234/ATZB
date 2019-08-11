@@ -2,33 +2,35 @@ import { NgModule } from '@angular/core';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterAsClientComponent } from './user-register-as-client/user-register-as-client.component';
 import { UserRegisterAsPerformerComponent } from './user-register-as-performer/user-register-as-performer.component';
-import { UserClientComponent } from './user-client/user-client.component';
-import { UserPerformerComponent } from './user-performer/user-performer.component';
 import { MaterialModule } from '../MaterialModule';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { UserComponent } from './user/user.component';
+import { UserOffersToMeComponent } from './user-offers-to-me/user-offers-to-me.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations:[
         UserLoginComponent,
         UserRegisterAsClientComponent,
         UserRegisterAsPerformerComponent,
-        UserClientComponent,
-        UserPerformerComponent
+        UserOrdersComponent,
+        UserComponent,
+        UserOffersToMeComponent,
     ],
     imports: [
         MaterialModule,
         ReactiveFormsModule,
-        MatRadioModule
+        MatRadioModule,
+        CommonModule,
     ],
     exports: [
         UserLoginComponent,
         UserRegisterAsClientComponent,
         UserRegisterAsPerformerComponent,
-        UserClientComponent,
-        UserPerformerComponent,
-        MaterialModule
-
+        MaterialModule,
+        CommonModule,
     ]
 })
 export class UserModule{}
