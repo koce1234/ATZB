@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using ATZB.Domain;
     using ATZB.Services.ApplicationServices;
+    using ATZB.Web.Controllers.Dto_s;
     using ATZB.Web.ViewModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@
         [HttpGet("myOrders")]
         public async Task<IActionResult> ReturnAllOrdersByUserId([FromHeader]string userId)
         {
-            var orders = await _orderService.GetAllOrderByUserId(userId);
+            var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
 
             return Ok(orders);
         }
