@@ -2,14 +2,26 @@
     <p>user-orders works!</p>
     <h1>KUR KUR KUR KUR KUR</h1>
     <div class="header">
+        <button type="button" (click)="showAllOrders()">All orders</button>
         <button type="button" (click)="addOrder()">Add order</button>
         <button type="button" (click)="showMyOrders()">My orders</button>
     </div>
     <div class="orders-sections">
         <div *ngIf="showAllOrdersForm">
-            <ul *ngFor="let items of allOrders">
-                <li>{{items}}</li>
-            </ul>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Description </th>
+                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="town">
+                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Town </th>
+                        <td mat-cell *matCellDef="let element"> {{element.town}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="priceTo">
+                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Price To </th>
+                        <td mat-cell *matCellDef="let element"> {{element.priceTo}} </td>
+                    </ng-container>
+            </table>
         </div>
         <div *ngIf="showAddOrderForm">
             <form [formGroup]="addOrderFormGroup">
@@ -31,7 +43,9 @@
             </form>
         </div>
         <div *ngIf="showMyOrdersForm">
-
+            <ul *ngFor="let items of myOrders">
+                <li>{{ items }}</li>
+            </ul>
         </div>
     </div>
 </div>

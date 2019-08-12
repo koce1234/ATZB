@@ -9,12 +9,14 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./user-orders.component.css']
 })
 export class UserOrdersComponent implements OnInit {
-  allOrders: any[] = [];
+  allOrders: {description: string, priceTo: number, town: string}[] = [];
   myOrders: any[] = [];
+  dataSourse: any;
   showAllOrdersForm: boolean;
   showAddOrderForm: boolean;
   showMyOrdersForm: boolean;
   addOrderFormGroup: FormGroup;
+  displayedColumns: string[] = ['description', 'town', 'priceTo']
 
   constructor(private http: HttpClient) { }
 
@@ -27,10 +29,13 @@ export class UserOrdersComponent implements OnInit {
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
 
     this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
-      (next) => console.log(next),
+      (next: {description: string, priceTo: number, town: string}[]) => {
+        console.log(next);
+        this.allOrders = next
+      },
       (error) => console.log(error),
       () => console.log('compleeted')
-    )
+    );
   }
 
   addOrder() {
@@ -45,8 +50,19 @@ export class UserOrdersComponent implements OnInit {
   }
 
   submitOrder() {
-    console.log('submit button clicked');
-    console.log(this.addOrderFormGroup);
+    let headers = new HttpHeaders;
+    headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
+
+    this.http.post(httpUrls.addOrder, this.addOrderFormGroup.value, { headers: headers })
+      .subscribe(
+        (next) => console.log(next),
+        (error) => console.log(error),
+        () => console.log('complete')
+      );
+
+      this.showAllOrdersForm = true;
+    this.showAddOrderForm = false;
+    this.showMyOrdersForm = false;
   }
 
   showMyOrders() {
@@ -63,5 +79,23 @@ export class UserOrdersComponent implements OnInit {
         (error) => console.log(error),
         () => console.log('compleeted')
       )
+  }
+
+  showAllOrders() {
+    this.showAllOrdersForm = true;
+    this.showAddOrderForm = false;
+    this.showMyOrdersForm = false;
+
+    let headers = new HttpHeaders;
+    headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
+
+    this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
+      (next: {description: string, priceTo: number, town: string}[]) => {
+        this.allOrders = next;
+        this.dataSourse = this.allOrders;
+      },
+      (error) => console.log(error),
+      () => console.log('compleeted')
+    );
   }
 }
