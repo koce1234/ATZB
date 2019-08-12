@@ -1,4 +1,6 @@
-﻿namespace ATZB.Web.Controllers
+﻿using ATZB.Domain.Models;
+
+namespace ATZB.Web.Controllers
 {
     using System.Threading.Tasks;
     using ATZB.Domain;

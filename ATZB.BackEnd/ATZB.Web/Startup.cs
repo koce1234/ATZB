@@ -47,13 +47,29 @@ namespace ATZB.Web
                             IssuerSigningKey = symetricSecurityKey
                         });
 
+
+            Account cloudinaryCredentials = new Account(
+                this._configuration["Cloudinary:CloudName"],
+                this._configuration["Cloudinary:ApiKey"],
+                this._configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
+
+            services.AddSingleton(cloudinaryUtility);
+
+            
+
+
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
             services.AddTransient<ICloudDinaryService , CloudDinaryService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IUserService, UserService>();
-            
+
+
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
