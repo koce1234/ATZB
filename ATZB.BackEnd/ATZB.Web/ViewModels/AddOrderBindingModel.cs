@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ATZB.Domain;
-using ATZB.Domain.Models;
-namespace ATZB.Web.ViewModels
-{ 
+namespace ATZB.Domain.Models
+{
     public class AddOrderBindingModel
     {
         public string Description { get; set; }

@@ -1,7 +1,6 @@
-﻿using ATZB.Domain.Models;
-
-namespace ATZB.Web.Controllers
+﻿namespace ATZB.Web.Controllers
 {
+    using ATZB.Domain.Models;
     using System.Threading.Tasks;
     using ATZB.Domain;
     using ATZB.Services.ApplicationServices;
@@ -29,7 +28,6 @@ namespace ATZB.Web.Controllers
 
             return Ok(allOrders);
         }
-
 
         //TODO: RADO NEED CHECK
         [Authorize]
@@ -66,28 +64,15 @@ namespace ATZB.Web.Controllers
 
             var order = new ATZBOrder
             {
-               Description = addOrderBindingModel.Description,
-               PriceTo = addOrderBindingModel.PriceTo,
-               Town = addOrderBindingModel.Town,
-               TypeForOrder = addOrderBindingModel.TypeOfOrder
+                Description = addOrderBindingModel.Description,
+                PriceTo = addOrderBindingModel.PriceTo,
+                Town = addOrderBindingModel.Town,
+                TypeForOrder = addOrderBindingModel.TypeOfOrder
             };
 
             await _orderService.RegisterOrderAsync(order);
 
             return Ok();
         }
-
-        //TODO: RADO NEED CHECK
-        [HttpGet]
-        public async Task<IActionResult> ReturnAllOrdersByUserIdAsync(string userId)
-        {
-            var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
-
-            return Ok(orders);
-        } 
-
-
-
-
     }
 }
