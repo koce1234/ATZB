@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ATZB.Data.DataContext;
-using ATZB.Domain;
-using ATZB.Services.ApplicationServices;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-
-namespace ATZB.Tests.ApplicationServices
+﻿namespace ATZB.Tests.ApplicationServices
 {
     public class OrderServiceTest
     {
