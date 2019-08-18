@@ -46,18 +46,23 @@ namespace ATZB.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(clientForRegisterBM.Email);
 
             if (isEmailAlreadyExisting)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
             }
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(clientForRegisterBM.Password);
-            
+
+            if (!CheckConfirmPasswordWithPassword(clientForRegisterBM.Password, clientForRegisterBM.ConfirmPassword))
+            {
+                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
+            }
+
             var user = new ATZBUser
             {
                FirstName = clientForRegisterBM.FirstName,
@@ -82,18 +87,23 @@ namespace ATZB.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(clientCompanyForRegisterBM.Email);
 
             if (isEmailAlreadyExisting)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
             }
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(clientCompanyForRegisterBM.Password);
-            
+
+            if (!CheckConfirmPasswordWithPassword(clientCompanyForRegisterBM.Password, clientCompanyForRegisterBM.ConfirmPassword))
+            {
+                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
+            }
+
             var user = new ATZBUser
             {
                 CompanyName = clientCompanyForRegisterBM.CompanyName,
@@ -119,14 +129,14 @@ namespace ATZB.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(contractorCompanyForRegisterBM.Email);
 
             if (isEmailAlreadyExisting)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
             }
 
             List<IFormFile> uploadedImages = new List<IFormFile>();
@@ -145,7 +155,10 @@ namespace ATZB.Web.Controllers
 
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(contractorCompanyForRegisterBM.Password);
 
-            
+            if (!CheckConfirmPasswordWithPassword(contractorCompanyForRegisterBM.Password, contractorCompanyForRegisterBM.ConfirmPassword))
+            {
+                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
+            }
 
             var user = new ATZBUser
             {
@@ -175,14 +188,14 @@ namespace ATZB.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(privatePersonForRegisterBM.Email);
 
             if (isEmailAlreadyExisting)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
             }
             List<IFormFile> uploadedImages = new List<IFormFile>();
 
@@ -197,6 +210,12 @@ namespace ATZB.Web.Controllers
                      .Result;
             
             var hashedPassword = await _passwordHasherService.HashPasswordAsync(privatePersonForRegisterBM.Password);
+
+            if (!CheckConfirmPasswordWithPassword(privatePersonForRegisterBM.Password , privatePersonForRegisterBM.ConfirmPassword))
+            {
+                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
+            }
+            
 
             var user = new ATZBUser
             {
@@ -224,7 +243,7 @@ namespace ATZB.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Model is not valid!");
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var userAndToken = await _userService
@@ -233,7 +252,7 @@ namespace ATZB.Web.Controllers
 
             if (userAndToken.Key == null)
             {
-                return BadRequest("Email or password is incorrect!");
+                return BadRequest(GlobalConstants.EmailOrPasswordIsIncorrectErrorMsg);
             }
             else
             {
@@ -286,8 +305,16 @@ namespace ATZB.Web.Controllers
 
             return typeSpecialsCollection;
         }
-       
 
+        private bool CheckConfirmPasswordWithPassword(string password , string confirmPassword)
+        {
+            if (password == confirmPassword)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

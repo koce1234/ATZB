@@ -1,11 +1,12 @@
-﻿namespace ATZB.Web.Controllers
+﻿using System.Linq;
+using ATZB.Domain.Models;
+
+namespace ATZB.Web.Controllers
 {
     using ATZB.Domain.Models;
     using System.Threading.Tasks;
     using ATZB.Domain;
     using ATZB.Services.ApplicationServices;
-    using ATZB.Web.Controllers.Dto_s;
-    using ATZB.Web.ViewModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -32,7 +33,7 @@
         //TODO: RADO NEED CHECK
         [Authorize]
         [HttpGet("myOrders")]
-        public async Task<IActionResult> ReturnAllOrdersByUserId([FromHeader]string userId)
+        public async Task<IActionResult> ReturnAllOrdersByUserIdAsync([FromHeader]string userId)
         {
             var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
 
@@ -41,16 +42,20 @@
 
         [Authorize]
         [HttpGet("filterBy")]
-        public async Task<IActionResult> FilterBy()
+        public async Task<IActionResult> FilterByAsync()
         {
             return BadRequest("Not implemented yet!");
         }
 
         [Authorize]
         [HttpGet("orderByCity")]
-        public async Task<IActionResult> OrderByCity(string city)
+        public async Task<IActionResult> OrderByCityAsync(string city)
         {
-            return BadRequest("Not implemented yet!");
+            if (city == null)
+            {
+                return BadRequest(GlobalConstants.InvalidCityControllerErrorMsg);
+            }
+            return  this.Ok(_orderService.GetAllOrdersAsync().Result.Where(o => o.Town == city));
         }
 
         [Authorize]
@@ -61,7 +66,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
             }
 
             var order = new ATZBOrder
