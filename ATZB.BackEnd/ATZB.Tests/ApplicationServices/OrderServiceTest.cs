@@ -1,4 +1,13 @@
-﻿namespace ATZB.Tests.ApplicationServices
+﻿using ATZB.Data.DataContext;
+using ATZB.Domain;
+using ATZB.Services.ApplicationServices;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xunit;
+
+namespace ATZB.Tests.ApplicationServices
 {
     public class OrderServiceTest
     {
@@ -26,6 +35,17 @@
         }
 
         public List<ATZBOrder> DataForSeedOrders => new List<ATZBOrder>()
-            { new ATZBOrder(),new ATZBOrder(), new ATZBOrder(), new ATZBOrder() , new ATZBOrder(), new ATZBOrder() , new ATZBOrder(), new ATZBOrder() , new ATZBOrder(), new ATZBOrder() };
+            {
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder(),
+            new ATZBOrder()
+        };
     }
 }
