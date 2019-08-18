@@ -8,20 +8,26 @@
     </div>
     <div class="orders-sections">
         <div *ngIf="showAllOrdersForm">
-                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                    <ng-container matColumnDef="description">
-                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Description </th>
-                        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="town">
-                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Town </th>
-                        <td mat-cell *matCellDef="let element"> {{element.town}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="priceTo">
-                        <th mat-header-cell *matHeaderCellDef="displayedColumns"> Price To </th>
-                        <td mat-cell *matCellDef="let element"> {{element.priceTo}} </td>
-                    </ng-container>
-            </table>
+            <div *ngFor="let order of allOrders">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ order.description }}
+                        </mat-panel-title>
+                        </mat-expansion-panel-header>
+                      
+                        <div>
+                            Order Location: {{ order.town }}
+                        </div>
+
+                        <div>
+                            Price Up To: {{ order.priceTo }}
+                        </div>
+                      
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
         <div *ngIf="showAddOrderForm">
             <form [formGroup]="addOrderFormGroup">
@@ -43,9 +49,26 @@
             </form>
         </div>
         <div *ngIf="showMyOrdersForm">
-            <ul *ngFor="let items of myOrders">
-                <li>{{ items }}</li>
-            </ul>
+            <div *ngFor="let order of myOrders">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ order.description }}
+                        </mat-panel-title>
+                        </mat-expansion-panel-header>
+                              
+                         <div>
+                            Order Location: {{ order.town }}
+                        </div>
+        
+                        <div>
+                            Price Up To: {{ order.priceTo }}
+                        </div>
+                              
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
     </div>
 </div>

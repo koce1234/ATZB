@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { UserOffersToMeComponent } from './user-offers-to-me/user-offers-to-me.component';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations:[
@@ -26,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
         MatRadioModule,
         MatTableModule,
         CommonModule,
+        MatExpansionModule,
     ],
     exports: [
         UserLoginComponent,

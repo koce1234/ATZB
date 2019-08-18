@@ -55,7 +55,9 @@
 
         [Authorize]
         [HttpPost("addOrder")]
-        public async Task<IActionResult> AddOrderAsync([FromBody]AddOrderBindingModel addOrderBindingModel)
+        public async Task<IActionResult> AddOrderAsync(
+            [FromBody]AddOrderBindingModel addOrderBindingModel, 
+            [FromHeader] string userId)
         {
             if (!ModelState.IsValid)
             {
@@ -67,7 +69,8 @@
                 Description = addOrderBindingModel.Description,
                 PriceTo = addOrderBindingModel.PriceTo,
                 Town = addOrderBindingModel.Town,
-                TypeForOrder = addOrderBindingModel.TypeOfOrder
+                TypeForOrder = addOrderBindingModel.TypeOfOrder,
+                UserId = userId
             };
 
             await _orderService.RegisterOrderAsync(order);
