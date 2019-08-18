@@ -33,7 +33,6 @@ namespace ATZB.Web.Controllers
             _cloudinaryService = cloudinaryService;
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetAllUsersAsync()
         {
@@ -41,7 +40,6 @@ namespace ATZB.Web.Controllers
 
             return Ok(getAllUsers);
         }
-
 
         [HttpPost("RegisterClient")]
         public async Task<IActionResult> RegisterClientAsync([FromBody]ClientRegisterdBindingModel clientForRegisterBM)
@@ -84,8 +82,6 @@ namespace ATZB.Web.Controllers
             return Ok();
         }
 
-
-
         [HttpPost("RegisterClientCompany")]
         public async Task<IActionResult> RegisterClientCompanyAsync([FromBody] ClientCompanyBindingModel clientCompanyForRegisterBM)
         {
@@ -127,8 +123,6 @@ namespace ATZB.Web.Controllers
          
             return Ok();
         }
-
-
 
         [HttpPost("RegisterContractorCompany")]
         public async Task<IActionResult> RegisterContractorCompanyAsync([FromBody] ContractorCompanyRegisterBindingModel contractorCompanyForRegisterBM)
@@ -189,7 +183,6 @@ namespace ATZB.Web.Controllers
             return Ok();
         }
 
-
         [HttpPost("RegisterPrivatePerson")]
         public async Task<IActionResult> RegisterPrivatePersonAsync([FromBody]PrivatePersonRegisterBindingModel privatePersonForRegisterBM)
         {
@@ -239,14 +232,11 @@ namespace ATZB.Web.Controllers
                 ImagesLinks = FillImagesCollection(uploadedImagesLinks),
                 TypeOfSpecials = FillTypeSpecialCollection(privatePersonForRegisterBM.TypeOfSpecials)
             };
-           
-            
             
             await _userService.CreateUserAsync(user);
 
             return Ok();
         }
-
 
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
@@ -266,7 +256,7 @@ namespace ATZB.Web.Controllers
             }
             else
             {
-                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id });
+                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id, fullName = userAndToken.Key.FirstName + ' ' +userAndToken.Key.LastName });
             }
         }
 

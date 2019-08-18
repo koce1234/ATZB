@@ -14,9 +14,9 @@
       <a mat-list-item routerLink="" (click)="logOut()">Log out</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column" fxLayoutGap="32px">
     <mat-toolbar color="primary">
-      <button
+      <button fxFlex fxFlex.xs="15"
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
@@ -24,9 +24,11 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span><a routerLink="" class="a-link-corr">ATZB</a></span>
+      <span fxFlex><a routerLink="" class="a-link-corr">ATZB</a></span>
+      <span fxFlex></span>
+      <span fxFlex>User: {{fullName}}</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <!-- Add Content Here -->
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

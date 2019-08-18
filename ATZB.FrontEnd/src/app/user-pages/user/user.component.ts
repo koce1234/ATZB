@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { seeProfile } from '../../sheard/url`s/urls';
 
 @Component({
   selector: 'app-user',
@@ -10,6 +11,7 @@ export class UserComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
