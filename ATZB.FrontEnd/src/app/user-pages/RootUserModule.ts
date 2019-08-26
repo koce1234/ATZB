@@ -6,11 +6,19 @@ import { MaterialModule } from '../MaterialModule';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
-import { UserComponent } from './user/user.component';
-import { UserOffersToMeComponent } from './user-offers-to-me/user-offers-to-me.component';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { UserOffersToMeComponent } from './user-offers-to-me/user-offers-to-me.component';
+import { UserComponent } from './user/user.component';
+import { RouterModule } from '@angular/router';
+import { MatSelectModule } from '@angular/material';
+
+const routs = [
+    { path: 'orders', component: UserOrdersComponent },
+    { path: 'offersToMe', component: UserOffersToMeComponent },
+    { path: 'profile', component: UserComponent },
+];
 
 @NgModule({
     declarations:[
@@ -28,6 +36,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatTableModule,
         CommonModule,
         MatExpansionModule,
+        RouterModule.forChild(routs),
+        MatSelectModule,
     ],
     exports: [
         UserLoginComponent,
@@ -35,6 +45,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         UserRegisterAsPerformerComponent,
         MaterialModule,
         CommonModule,
+        RouterModule,
+        MatSelectModule,
     ]
 })
-export class UserModule{}
+export class RootUserModule{}

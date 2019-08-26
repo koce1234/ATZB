@@ -12,7 +12,6 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
     {
         public ContractorCompanyRegisterBindingModel()
         {
-                this.TypeOfSpecials = new List<TypeOfSpecial>();
                 this.Images = new List<IFormFile>();
         }
         [Required]
@@ -51,7 +50,6 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
         [Required]
         public string Email { get; set; }
 
-        public ICollection<TypeOfSpecial> TypeOfSpecials { get; set; }
         public ICollection<IFormFile> Images { get; set; }
         //MustUploadFiles
     }

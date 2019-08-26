@@ -15,8 +15,5 @@ namespace ATZB.Domain.Models
 
         [Required]
         public string Town { get; set; }
-
-        [Required]
-        public TypeOfSpecial TypeOfOrder { get; set; }
     }
 }

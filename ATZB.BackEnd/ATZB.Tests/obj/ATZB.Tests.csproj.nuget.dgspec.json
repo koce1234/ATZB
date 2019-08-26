@@ -241,10 +241,6 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.2.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
               "version": "[2.2.6, )"

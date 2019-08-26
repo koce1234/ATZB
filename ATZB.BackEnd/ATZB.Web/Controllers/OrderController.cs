@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using ATZB.Domain.Models;
 
 namespace ATZB.Web.Controllers
 {
@@ -74,7 +73,6 @@ namespace ATZB.Web.Controllers
                 Description = addOrderBindingModel.Description,
                 PriceTo = addOrderBindingModel.PriceTo,
                 Town = addOrderBindingModel.Town,
-                TypeForOrder = addOrderBindingModel.TypeOfOrder,
                 UserId = userId
             };
 

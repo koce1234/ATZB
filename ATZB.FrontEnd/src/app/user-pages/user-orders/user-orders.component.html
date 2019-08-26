@@ -35,8 +35,13 @@
                     <input matInput formControlName="priceTo" placeholder="Price up to">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput formControlName="town" placeholder="Town">
-                </mat-form-field>
+                        <mat-label>Favorite food</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let city of keys(cities)" [value]="cities[city]">
+                            {{city}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                 <mat-form-field>
                     <textarea 
                         matInput 

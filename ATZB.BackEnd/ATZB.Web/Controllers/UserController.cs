@@ -108,10 +108,6 @@ namespace ATZB.Web.Controllers
             {
                 CompanyName = clientCompanyForRegisterBM.CompanyName,
                Adress = clientCompanyForRegisterBM.Adress,
-               ENK = clientCompanyForRegisterBM.ENK,
-               DDSNumber = clientCompanyForRegisterBM.DDSNum,
-               RegKSB =  clientCompanyForRegisterBM.REGKSB,
-               Mol = clientCompanyForRegisterBM.Mol,
                AnyObligations = clientCompanyForRegisterBM.AnyObligations,
                PasswordHash = hashedPassword.Key,
                PasswordSalt =  hashedPassword.Value,
@@ -164,17 +160,12 @@ namespace ATZB.Web.Controllers
             {
                 CompanyName = contractorCompanyForRegisterBM.CompanyName,
                 Adress = contractorCompanyForRegisterBM.Adress,
-                ENK = contractorCompanyForRegisterBM.ENK,
-                DDSNumber = contractorCompanyForRegisterBM.DDSNum,
-                RegKSB = contractorCompanyForRegisterBM.REGKSB,
-                Mol = contractorCompanyForRegisterBM.Mol,
                 AnyObligations = contractorCompanyForRegisterBM.AnyObligations,
                 PasswordHash = hashedPassword.Key,
                 PasswordSalt = hashedPassword.Value,
                 City = contractorCompanyForRegisterBM.City,
                 Email = contractorCompanyForRegisterBM.Email,
                 ImagesLinks = FillImagesCollection(uploadedImagesLinks),
-                TypeOfSpecials = FillTypeSpecialCollection(contractorCompanyForRegisterBM.TypeOfSpecials)
             };
 
 
@@ -230,7 +221,6 @@ namespace ATZB.Web.Controllers
                 City = privatePersonForRegisterBM.City,
                 Email = privatePersonForRegisterBM.Email,
                 ImagesLinks = FillImagesCollection(uploadedImagesLinks),
-                TypeOfSpecials = FillTypeSpecialCollection(privatePersonForRegisterBM.TypeOfSpecials)
             };
             
             await _userService.CreateUserAsync(user);
@@ -293,18 +283,18 @@ namespace ATZB.Web.Controllers
             return imagesCollection;
         }
 
-        private List<TypeSpecial> FillTypeSpecialCollection(ICollection<TypeOfSpecial> typeSpecials)
-        {
-            var typeSpecialsCollection = new List<TypeSpecial>();
+        //rivate List<TypeSpecial> FillTypeSpecialCollection(ICollection<TypeOfSpecial> typeSpecials)
+        //{
+        //    var typeSpecialsCollection = new List<TypeSpecial>();
 
 
-            foreach (var typeSpecial in typeSpecials)
-            {
-                typeSpecialsCollection.Add(new TypeSpecial(typeSpecial));
-            }
+        //    foreach (var typeSpecial in typeSpecials)
+        //    {
+        //        typeSpecialsCollection.Add(new TypeSpecial(typeSpecial));
+        //    }
 
-            return typeSpecialsCollection;
-        }
+        //    return typeSpecialsCollection;
+        //}p
 
         private bool CheckConfirmPasswordWithPassword(string password , string confirmPassword)
         {

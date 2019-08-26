@@ -9,8 +9,12 @@
                     </a></button>
                 <button mat-raised-button color="warn" class="user-signUp" [matMenuTriggerFor]="menu">Sign up</button>
                 <mat-menu #menu="matMenu" class="register-menu">
-                        <button mat-menu-item><a routerLink="/registerAsClient" class="menu-btn">Register as client</a></button>
-                        <button mat-menu-item><a routerLink="/registeAsPerformer" class="menu-btn">Register as performer</a></button>
+                        <button mat-menu-item>
+                            <a routerLink="/registerAsClient" class="menu-btn">I want to be client</a>
+                        </button>
+                        <button mat-menu-item>
+                            <a routerLink="/registeAsPerformer" class="menu-btn">I want to be performer</a>
+                        </button>
                 </mat-menu>
             </div>
         </mat-toolbar>

@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserModule } from './user-pages/UserModule';
+import { RootUserModule } from './user-pages/RootUserModule';
 import { NavigationModule } from './navigation-paterns/NavigationModule';
 import { HomePageComponent } from './sheard/home-page/home-page.component';
 import { PageNotFoundComponent } from './sheard/page-not-found/page-not-found.component';
@@ -19,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    UserModule,
+    RootUserModule,
     NavigationModule,
     HttpClientModule,
   ],

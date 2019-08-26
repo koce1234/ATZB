@@ -19,7 +19,7 @@ namespace ATZB.Domain
 
         public string Town { get; set; }
 
-        public TypeOfSpecial TypeForOrder { get; set; }
+        //public TypeOfSpecial TypeForOrder { get; set; }
         public ATZBUser User { get; set; }
 
         public string UserId { get; set; }

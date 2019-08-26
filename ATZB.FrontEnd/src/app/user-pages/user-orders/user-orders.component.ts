@@ -4,6 +4,7 @@ import * as httpUrls from '../../sheard/url`s/urls';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Order } from 'src/app/sheard/models/order.interface';
 import { Router } from '@angular/router';
+import { Cities } from 'src/app/sheard/location/cities.enum';
 
 @Component({
   selector: 'app-user-orders',
@@ -13,7 +14,9 @@ import { Router } from '@angular/router';
 export class UserOrdersComponent implements OnInit {
   allOrders: Order[] = [];
   myOrders: Order[] = [];
+  keys = Object.values;
   dataSourse: any;
+  cities = Cities;
   showAllOrdersForm: boolean;
   showAddOrderForm: boolean;
   showMyOrdersForm: boolean;
@@ -25,6 +28,7 @@ export class UserOrdersComponent implements OnInit {
     this.showAllOrdersForm = true;
     this.showAddOrderForm = false;
     this.showMyOrdersForm = false;
+    console.log(this.cities);
 
     let headers = new HttpHeaders;
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
@@ -46,11 +50,14 @@ export class UserOrdersComponent implements OnInit {
     this.addOrderFormGroup = new FormGroup({
       description: new FormControl(''),
       priceTo: new FormControl(''),
-      town: new FormControl('')
+      city: new FormControl('')
     })
   }
 
   submitOrder() {
+    console.log(this.addOrderFormGroup.value);
+    console.log(this.cities);
+
     let headers = new HttpHeaders;
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
     headers = headers.set("UserId", localStorage.getItem('userId'));

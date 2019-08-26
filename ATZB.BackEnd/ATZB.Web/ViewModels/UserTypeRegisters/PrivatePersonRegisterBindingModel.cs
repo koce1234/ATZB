@@ -12,7 +12,6 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
     {
         public PrivatePersonRegisterBindingModel()
         {
-                this.TypeOfSpecials = new List<TypeOfSpecial>();
                 this.Images = new List<IFormFile>();
         }
         [Required]
@@ -45,7 +44,6 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
 
        public ICollection<IFormFile> Images { get; set; }
 
-       public ICollection<TypeOfSpecial> TypeOfSpecials { get; set; }
 
         //MustuPloadFiles
     }
