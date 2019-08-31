@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ATZB.Domain;
-using ATZB.Domain.Models;
 using ATZB.Services.ApplicationServices;
 using ATZB.Services.BaseServices;
 using ATZB.Web.Controllers.Dto_s;
-using ATZB.Web.ViewModels;
 using ATZB.Web.ViewModels.UserTypeRegisters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +38,7 @@ namespace ATZB.Web.Controllers
             return Ok(getAllUsers);
         }
 
-        [HttpPost("RegisterClient")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterClientAsync([FromBody]ClientRegisterdBindingModel clientForRegisterBM)
         {
             if (!ModelState.IsValid)
@@ -67,52 +64,13 @@ namespace ATZB.Web.Controllers
             {
                FirstName = clientForRegisterBM.FirstName,
                LastName = clientForRegisterBM.LastName,
-               Adress = clientForRegisterBM.Adress,
+               StreetAdress = clientForRegisterBM.StreetAdress,
                EGN = clientForRegisterBM.EGN,
-               LKNummber = clientForRegisterBM.LkNumber,
-               AnyObligations = clientForRegisterBM.AnyObligations,
-               PasswordHash = hashedPassword.Key,
-               PasswordSalt =  hashedPassword.Value,
                City = clientForRegisterBM.City,
-               Email = clientForRegisterBM.Email
-            };
-
-            await _userService.CreateUserAsync(user);
-         
-            return Ok();
-        }
-
-        [HttpPost("RegisterClientCompany")]
-        public async Task<IActionResult> RegisterClientCompanyAsync([FromBody] ClientCompanyBindingModel clientCompanyForRegisterBM)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
-            }
-
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(clientCompanyForRegisterBM.Email);
-
-            if (isEmailAlreadyExisting)
-            {
-                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
-            }
-
-            var hashedPassword = await _passwordHasherService.HashPasswordAsync(clientCompanyForRegisterBM.Password);
-
-            if (!CheckConfirmPasswordWithPassword(clientCompanyForRegisterBM.Password, clientCompanyForRegisterBM.ConfirmPassword))
-            {
-                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
-            }
-
-            var user = new ATZBUser
-            {
-                CompanyName = clientCompanyForRegisterBM.CompanyName,
-               Adress = clientCompanyForRegisterBM.Adress,
-               AnyObligations = clientCompanyForRegisterBM.AnyObligations,
+               Phone = clientForRegisterBM.Phone,
+               Email = clientForRegisterBM.Email,
                PasswordHash = hashedPassword.Key,
-               PasswordSalt =  hashedPassword.Value,
-               City = clientCompanyForRegisterBM.City,
-               Email = clientCompanyForRegisterBM.Email
+               PasswordSalt =  hashedPassword.Value
             };
 
             await _userService.CreateUserAsync(user);
@@ -120,115 +78,16 @@ namespace ATZB.Web.Controllers
             return Ok();
         }
 
-        [HttpPost("RegisterContractorCompany")]
-        public async Task<IActionResult> RegisterContractorCompanyAsync([FromBody] ContractorCompanyRegisterBindingModel contractorCompanyForRegisterBM)
+        [Authorize]
+        [HttpPost("registerCompany")]
+        public async Task<IActionResult> CreateCompany(
+            [FromHeader] string userId,
+            [FromBody] RegisterCompanyBindingModel registerCompanyBindingModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
-            }
-
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(contractorCompanyForRegisterBM.Email);
-
-            if (isEmailAlreadyExisting)
-            {
-                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
-            }
-
-            List<IFormFile> uploadedImages = new List<IFormFile>();
-
-            uploadedImages.AddRange(contractorCompanyForRegisterBM.Images);
-
-            
-
-            List<string> uploadedImagesLinks = GetLinks
-                (
-                    uploadedImages
-                    , contractorCompanyForRegisterBM.CompanyName
-                )
-                .Result;
-
-
-            var hashedPassword = await _passwordHasherService.HashPasswordAsync(contractorCompanyForRegisterBM.Password);
-
-            if (!CheckConfirmPasswordWithPassword(contractorCompanyForRegisterBM.Password, contractorCompanyForRegisterBM.ConfirmPassword))
-            {
-                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
-            }
-
-            var user = new ATZBUser
-            {
-                CompanyName = contractorCompanyForRegisterBM.CompanyName,
-                Adress = contractorCompanyForRegisterBM.Adress,
-                AnyObligations = contractorCompanyForRegisterBM.AnyObligations,
-                PasswordHash = hashedPassword.Key,
-                PasswordSalt = hashedPassword.Value,
-                City = contractorCompanyForRegisterBM.City,
-                Email = contractorCompanyForRegisterBM.Email,
-                ImagesLinks = FillImagesCollection(uploadedImagesLinks),
-            };
-
-
-            await _userService.CreateUserAsync(user);
-
-            return Ok();
+            return BadRequest();
         }
 
-        [HttpPost("RegisterPrivatePerson")]
-        public async Task<IActionResult> RegisterPrivatePersonAsync([FromBody]PrivatePersonRegisterBindingModel privatePersonForRegisterBM)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(GlobalConstants.InvalidModelControllerErrorMsg);
-            }
-
-            var isEmailAlreadyExisting = await _userService.EmailAlreadyExistAsync(privatePersonForRegisterBM.Email);
-
-            if (isEmailAlreadyExisting)
-            {
-                return BadRequest(GlobalConstants.EmailAlreadyExistErrorMsg);
-            }
-            List<IFormFile> uploadedImages = new List<IFormFile>();
-
-            uploadedImages.AddRange(privatePersonForRegisterBM.Images);
-
-            List<string> uploadedImagesLinks = GetLinks
-                    (
-                      uploadedImages
-                    , privatePersonForRegisterBM.FirstName + "/" + privatePersonForRegisterBM.LastName
-                    
-                    )
-                     .Result;
-            
-            var hashedPassword = await _passwordHasherService.HashPasswordAsync(privatePersonForRegisterBM.Password);
-
-            if (!CheckConfirmPasswordWithPassword(privatePersonForRegisterBM.Password , privatePersonForRegisterBM.ConfirmPassword))
-            {
-                return BadRequest(GlobalConstants.InvalidPasswordErrorMsg);
-            }
-            
-
-            var user = new ATZBUser
-            {
-                FirstName = privatePersonForRegisterBM.FirstName,
-                LastName = privatePersonForRegisterBM.LastName,
-                Adress = privatePersonForRegisterBM.Adress,
-                EGN = privatePersonForRegisterBM.EGN,
-                LKNummber = privatePersonForRegisterBM.LkNumber,
-                AnyObligations = privatePersonForRegisterBM.AnyObligations,
-                PasswordHash = hashedPassword.Key,
-                PasswordSalt = hashedPassword.Value,
-                City = privatePersonForRegisterBM.City,
-                Email = privatePersonForRegisterBM.Email,
-                ImagesLinks = FillImagesCollection(uploadedImagesLinks),
-            };
-            
-            await _userService.CreateUserAsync(user);
-
-            return Ok();
-        }
-
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody]UserForLogInBindingModel userForLogInDto)
         {
             if (!ModelState.IsValid)
@@ -283,18 +142,6 @@ namespace ATZB.Web.Controllers
             return imagesCollection;
         }
 
-        //rivate List<TypeSpecial> FillTypeSpecialCollection(ICollection<TypeOfSpecial> typeSpecials)
-        //{
-        //    var typeSpecialsCollection = new List<TypeSpecial>();
-
-
-        //    foreach (var typeSpecial in typeSpecials)
-        //    {
-        //        typeSpecialsCollection.Add(new TypeSpecial(typeSpecial));
-        //    }
-
-        //    return typeSpecialsCollection;
-        //}p
 
         private bool CheckConfirmPasswordWithPassword(string password , string confirmPassword)
         {

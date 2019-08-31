@@ -35,7 +35,7 @@ namespace ATZB.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Offerts");
+                    b.ToTable("Offers");
                 });
 
             modelBuilder.Entity("ATZB.Domain.ATZBOrder", b =>
@@ -64,23 +64,15 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Adress");
-
-                    b.Property<bool>("AnyObligations");
-
                     b.Property<int>("City");
 
                     b.Property<string>("CompanyId");
-
-                    b.Property<string>("CompanyName");
 
                     b.Property<string>("EGN");
 
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");
-
-                    b.Property<string>("LKNummber");
 
                     b.Property<string>("LastName");
 
@@ -90,7 +82,7 @@ namespace ATZB.Data.Migrations
 
                     b.Property<string>("Phone");
 
-                    b.Property<int>("UserType");
+                    b.Property<string>("StreetAdress");
 
                     b.HasKey("Id");
 
@@ -102,13 +94,13 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ATZBUserId");
-
                     b.Property<string>("ImageLink");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ATZBUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Images");
                 });
@@ -118,7 +110,11 @@ namespace ATZB.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("AnyObligation");
+
                     b.Property<string>("DDSNumber");
+
+                    b.Property<int>("DirectorPrsonalDocumentNumber");
 
                     b.Property<string>("ENK");
 
@@ -153,9 +149,9 @@ namespace ATZB.Data.Migrations
 
             modelBuilder.Entity("ATZB.Domain.Image", b =>
                 {
-                    b.HasOne("ATZB.Domain.ATZBUser")
+                    b.HasOne("ATZB.Domain.ATZBUser", "User")
                         .WithMany("ImagesLinks")
-                        .HasForeignKey("ATZBUserId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ATZB.Domain.Models.Company", b =>

@@ -13,11 +13,36 @@
     <Compile Remove="Migrations\20190706210007_Initiall.Designer.cs" />
     <Compile Remove="Migrations\20190707075746_Initiall.cs" />
     <Compile Remove="Migrations\20190707075746_Initiall.Designer.cs" />
+    <Compile Remove="Migrations\20190731085219_Initiall.cs" />
+    <Compile Remove="Migrations\20190731085219_Initiall.Designer.cs" />
+    <Compile Remove="Migrations\20190803101334_Changing Address to StreetAddress, Adding a City, Name field is divided to FirstName And LastName.cs" />
+    <Compile Remove="Migrations\20190803101334_Changing Address to StreetAddress, Adding a City, Name field is divided to FirstName And LastName.Designer.cs" />
+    <Compile Remove="Migrations\20190811141313_kur.cs" />
+    <Compile Remove="Migrations\20190811141313_kur.Designer.cs" />
+    <Compile Remove="Migrations\20190831095037_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831095037_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831095223_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831095223_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831100318_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831100318_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831104557_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831104557_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831105119_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831105119_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831105354_spliting user into user and conpany.cs" />
+    <Compile Remove="Migrations\20190831105354_spliting user into user and conpany.Designer.cs" />
+    <Compile Remove="Migrations\20190831110440_spliting user into user and company.cs" />
+    <Compile Remove="Migrations\20190831110440_spliting user into user and company.Designer.cs" />
+    <Compile Remove="Migrations\20190831111009_split user into user and company.cs" />
+    <Compile Remove="Migrations\20190831111009_split user into user and company.Designer.cs" />
+    <Compile Remove="Migrations\20190831120733_split user into user and company.cs" />
+    <Compile Remove="Migrations\20190831120733_split user into user and company.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
   </ItemGroup>
 
   <ItemGroup>

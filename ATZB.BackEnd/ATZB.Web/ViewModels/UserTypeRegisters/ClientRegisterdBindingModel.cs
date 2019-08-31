@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ATZB.Domain.Models;
-
-namespace ATZB.Web.ViewModels.UserTypeRegisters
+﻿namespace ATZB.Web.ViewModels.UserTypeRegisters
 {
+    using System.ComponentModel.DataAnnotations;
+    using ATZB.Domain.Models;
+
     public class ClientRegisterdBindingModel
     {
         [Required]
-        [StringLength(20 , MinimumLength = 3)]
+        [StringLength(20, MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required]
@@ -14,29 +14,28 @@ namespace ATZB.Web.ViewModels.UserTypeRegisters
         public string LastName { get; set; }
 
         [Required]
-        public string Adress { get; set; }
+        public string StreetAdress { get; set; }
 
         [Required]
+        [StringLength(10, MinimumLength = 10)]
         public string EGN { get; set; }
 
         [Required]
-        public string LkNumber { get; set; }
+        public Cities City { get; set; }
+
+        [Phone]
+        public string Phone { get; set; }
 
         [Required]
-        public bool AnyObligations { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 6)]
         public string Password { get; set; }
 
         [Required]
-        public Cities City { get; set; }
-
-        [Required]
         [StringLength(20, MinimumLength = 6)]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        public string Email { get; set; }
     }
 }

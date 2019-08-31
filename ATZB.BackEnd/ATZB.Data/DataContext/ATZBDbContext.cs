@@ -6,15 +6,15 @@
 
     public class ATZBDbContext : DbContext
     {
-        public DbSet<ATZBOrder> Orders { get; set; }
-
         public DbSet<ATZBUser> Users { get; set; }
 
-        public DbSet<ATZBOffert> Offerts { get; set; }
+        public DbSet<ATZBOrder> Orders { get; set; }
 
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ATZBOffert> Offers { get; set; }
 
         public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Image> Images { get; set; }
 
         public ATZBDbContext(DbContextOptions<ATZBDbContext> options) : base(options)
         {
@@ -26,14 +26,6 @@
 
         protected override void OnModelCreating(ModelBuilder model)
         {
-            model.Entity<ATZBOffert>()
-                .Property(x => x.Price)
-                .HasColumnType("decimal(13, 2)");
-
-            model.Entity<ATZBOrder>()
-                .Property(x => x.PriceTo)
-                .HasColumnType("decimal(13, 2)");
-
             model.Entity<ATZBUser>()
                 .HasOne(x => x.Company)
                 .WithOne(x => x.User)
@@ -43,6 +35,29 @@
                 .HasOne(x => x.User)
                 .WithOne(x => x.Company)
                 .HasForeignKey<Company>(x => x.UserId);
+
+            model.Entity<ATZBOffert>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Offers)
+                .HasForeignKey(x => x.UserId);
+
+            model.Entity<ATZBOrder>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.UserId);
+
+            model.Entity<Image>()
+                .HasOne(x => x.User)
+                .WithMany(x => x.ImagesLinks)
+                .HasForeignKey(x => x.UserId);
+
+            model.Entity<ATZBOffert>()
+                .Property(x => x.Price)
+                .HasColumnType("decimal(13, 2)");
+
+            model.Entity<ATZBOrder>()
+                .Property(x => x.PriceTo)
+                .HasColumnType("decimal(13, 2)");
         }
     }
 }

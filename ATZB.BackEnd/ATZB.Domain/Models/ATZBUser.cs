@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using ATZB.Domain.Models;
-
-namespace ATZB.Domain
+﻿namespace ATZB.Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using ATZB.Domain.Models;
+
     public class ATZBUser
     {
         public ATZBUser()
@@ -19,21 +19,15 @@ namespace ATZB.Domain
 
         public string Id { get; set; }
 
-        public string CompanyName { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public string Adress { get; set; }
+        public string StreetAdress { get; set; }
 
         public string EGN { get; set; }
 
-        public string LKNummber { get; set; }
-
         public string Phone { get; set; }
-
-        public bool AnyObligations { get; set; }
 
         public byte[] PasswordHash { get; set; }
 
@@ -44,8 +38,6 @@ namespace ATZB.Domain
         public string CompanyId { get; set; }
 
         public Company Company { get; set; }
-
-        public UserType UserType { get; set; }
 
         public Cities City { get; set; }
 

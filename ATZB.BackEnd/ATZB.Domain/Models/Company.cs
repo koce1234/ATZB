@@ -11,6 +11,10 @@
 
         public string Id { get; set; }
 
+        public bool AnyObligation { get; set; }
+
+        public int DirectorPrsonalDocumentNumber { get; set; }
+
         public string ENK { get; set; }
 
         public string DDSNumber { get; set; }

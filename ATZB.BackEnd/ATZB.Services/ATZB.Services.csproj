@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.8.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
   </ItemGroup>
 

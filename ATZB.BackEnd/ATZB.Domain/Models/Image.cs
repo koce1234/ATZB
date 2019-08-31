@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace ATZB.Domain
+﻿namespace ATZB.Domain
 {
+    using System;
+
     public class Image
     {
         public Image(string imageLink)
@@ -12,6 +12,9 @@ namespace ATZB.Domain
         public string Id { get; set; }
 
         public string ImageLink { get; set; }
-        
+
+        public string UserId { get; set; }
+
+        public ATZBUser User { get; set; }
     }
 }
