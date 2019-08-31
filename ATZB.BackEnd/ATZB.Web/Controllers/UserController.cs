@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ATZB.Domain;
+using ATZB.Domain.Models;
 using ATZB.Services.ApplicationServices;
 using ATZB.Services.BaseServices;
 using ATZB.Web.Controllers.Dto_s;
@@ -18,15 +19,18 @@ namespace ATZB.Web.Controllers
     {
         private readonly IPasswordHasherService _passwordHasherService;
         private readonly IUserService _userService;
+        private readonly ICompanyService _companyService;
         private readonly ICloudDinaryService _cloudinaryService;
 
         public UserController(
            IPasswordHasherService passwordHasherService,
-            IUserService userService
-           ,ICloudDinaryService cloudinaryService)
+           IUserService userService,
+           ICompanyService companyService,
+           ICloudDinaryService cloudinaryService)
         {
             this._passwordHasherService = passwordHasherService;
             _userService = userService;
+            _companyService = companyService;
             _cloudinaryService = cloudinaryService;
         }
 
@@ -62,19 +66,19 @@ namespace ATZB.Web.Controllers
 
             var user = new ATZBUser
             {
-               FirstName = clientForRegisterBM.FirstName,
-               LastName = clientForRegisterBM.LastName,
-               StreetAdress = clientForRegisterBM.StreetAdress,
-               EGN = clientForRegisterBM.EGN,
-               City = clientForRegisterBM.City,
-               Phone = clientForRegisterBM.Phone,
-               Email = clientForRegisterBM.Email,
-               PasswordHash = hashedPassword.Key,
-               PasswordSalt =  hashedPassword.Value
+                FirstName = clientForRegisterBM.FirstName,
+                LastName = clientForRegisterBM.LastName,
+                StreetAdress = clientForRegisterBM.StreetAdress,
+                EGN = clientForRegisterBM.EGN,
+                City = clientForRegisterBM.City,
+                Phone = clientForRegisterBM.Phone,
+                Email = clientForRegisterBM.Email,
+                PasswordHash = hashedPassword.Key,
+                PasswordSalt = hashedPassword.Value
             };
 
             await _userService.CreateUserAsync(user);
-         
+
             return Ok();
         }
 
@@ -84,7 +88,24 @@ namespace ATZB.Web.Controllers
             [FromHeader] string userId,
             [FromBody] RegisterCompanyBindingModel registerCompanyBindingModel)
         {
-            return BadRequest();
+            if (!this.ModelState.IsValid && int.TryParse(registerCompanyBindingModel.DirectorPrsonalDocumentNumber, out int kur))
+            {
+                return BadRequest();
+            }
+
+            var newCompany = new Company()
+            {
+                DirectorPrsonalDocumentNumber = int.Parse(registerCompanyBindingModel.DirectorPrsonalDocumentNumber),
+                ENK = registerCompanyBindingModel.ENK,
+                DDSNumber = registerCompanyBindingModel.DDSNumber,
+                Mol = registerCompanyBindingModel.Mol,
+                RegKSB = registerCompanyBindingModel.RegKSB,
+                AnyObligation = registerCompanyBindingModel.AnyObligation,
+                UserId = userId
+            };
+
+            _companyService.RegisterCompany(userId, newCompany);
+            return Ok();
         }
 
         [HttpPost("login")]
@@ -105,12 +126,12 @@ namespace ATZB.Web.Controllers
             }
             else
             {
-                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id, fullName = userAndToken.Key.FirstName + ' ' +userAndToken.Key.LastName });
+                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id, fullName = userAndToken.Key.FirstName + ' ' + userAndToken.Key.LastName });
             }
         }
 
 
-        private async Task<List<string>> GetLinks(List<IFormFile> images , string fullName )
+        private async Task<List<string>> GetLinks(List<IFormFile> images, string fullName)
         {
             List<IFormFile> uploadedImages = new List<IFormFile>();
 
@@ -121,7 +142,7 @@ namespace ATZB.Web.Controllers
             foreach (var uploadedImage in uploadedImages)
             {
                 string newImageName = fullName;
-                string imageLink =  await _cloudinaryService.CreateImageAsync(uploadedImage, newImageName);
+                string imageLink = await _cloudinaryService.CreateImageAsync(uploadedImage, newImageName);
                 uploadedImagesLinks.Add(imageLink);
             }
 
@@ -132,7 +153,7 @@ namespace ATZB.Web.Controllers
         private List<Image> FillImagesCollection(List<string> uploadedImagesLinks)
         {
             var imagesCollection = new List<Image>();
-            
+
 
             foreach (var uploadedImagesLink in uploadedImagesLinks)
             {
@@ -143,7 +164,7 @@ namespace ATZB.Web.Controllers
         }
 
 
-        private bool CheckConfirmPasswordWithPassword(string password , string confirmPassword)
+        private bool CheckConfirmPasswordWithPassword(string password, string confirmPassword)
         {
             if (password == confirmPassword)
             {

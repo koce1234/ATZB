@@ -1,10 +1,8 @@
-using ATZB.Data.DataContext;
-using ATZB.Services.BaseServices;
-using CloudinaryDotNet;
-
 namespace ATZB.Web
 {
-    using ATZB.Data;
+    using ATZB.Data.DataContext;
+    using ATZB.Services.BaseServices;
+    using CloudinaryDotNet;
     using ATZB.Services.ApplicationServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -57,18 +55,13 @@ namespace ATZB.Web
 
             services.AddSingleton(cloudinaryUtility);
 
-            
-
-
             services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddTransient<IPasswordValidatorService, PasswordValidatorService>();
-            services.AddTransient<ICloudDinaryService , CloudDinaryService>();
+            services.AddTransient<ICloudDinaryService, CloudDinaryService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IUserService, UserService>();
-
-
-
+            services.AddTransient<ICompanyService, CompanyService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
