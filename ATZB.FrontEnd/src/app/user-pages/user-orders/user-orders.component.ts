@@ -33,14 +33,14 @@ export class UserOrdersComponent implements OnInit {
     let headers = new HttpHeaders;
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
 
-    this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
-      (next: Order[]) => {
-        console.log(next);
-        this.allOrders = next
-      },
-      (error) => console.log(error),
-      () => console.log('compleeted')
-    );
+    // this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
+    //   (next: Order[]) => {
+    //     console.log(next);
+    //     this.allOrders = next
+    //   },
+    //   (error) => console.log(error),
+    //   () => console.log('compleeted')
+    // );
   }
 
   addOrder() {
@@ -78,7 +78,7 @@ export class UserOrdersComponent implements OnInit {
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
     headers = headers.set('userId', localStorage.getItem('userId'));
 
-    this.http.get(httpUrls.getMyOrders, { headers })
+    this.http.get(httpUrls.seeAllMyOrders, { headers })
       .subscribe(
         (next: Order[]) => this.myOrders = next,
         (error) => console.log(error),
@@ -94,13 +94,13 @@ export class UserOrdersComponent implements OnInit {
     let headers = new HttpHeaders;
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
 
-    this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
-      (next: Order[]) => {
-        this.allOrders = next;
-        this.dataSourse = this.allOrders;
-      },
-      (error) => console.log(error),
-      () => console.log('compleeted')
-    );
+    // this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
+    //   (next: Order[]) => {
+    //     this.allOrders = next;
+    //     this.dataSourse = this.allOrders;
+    //   },
+    //   (error) => console.log(error),
+    //   () => console.log('compleeted')
+    // );
   }
 }

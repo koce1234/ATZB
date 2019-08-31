@@ -52,11 +52,11 @@ export class UserRegisterAsPerformerComponent implements OnInit {
           headers: new HttpHeaders(headers), 
         };
 
-        this.http.post(httpUrls.registerAsPerformer, this.userInputGroup.value, requestOptions)
-        .subscribe(
-          (next) => console.log(next),
-          (error) => console.log(error),
-          () => this.router.navigate(['login']));
+        // this.http.post(httpUrls.registerAsPerformer, this.userInputGroup.value, requestOptions)
+        // .subscribe(
+        //   (next) => console.log(next),
+        //   (error) => console.log(error),
+        //   () => this.router.navigate(['login']));
       }
     }
   }

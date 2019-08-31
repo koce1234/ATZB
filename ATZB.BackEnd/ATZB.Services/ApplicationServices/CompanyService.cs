@@ -2,6 +2,7 @@
 {
     using ATZB.Data.DataContext;
     using ATZB.Domain.Models;
+    using System.Linq;
 
     public class CompanyService : ICompanyService
     {
@@ -14,7 +15,19 @@
 
         public void RegisterCompany(string userId , Company company)
         {
-            throw new System.NotImplementedException();
+            _context.Companies.Add(company);
+
+            _context.SaveChanges();
+
+            var kur = _context.Companies
+                .FirstOrDefault(x => x.UserId == userId)
+                .Id;
+
+            var putka = _context.Users.FirstOrDefault(x => x.Id == userId);
+
+            putka.CompanyId = kur;
+
+            _context.SaveChanges();
         }
     }
 }

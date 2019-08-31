@@ -47,7 +47,7 @@ export class UserRegisterAsClientComponent implements OnInit {
           headers: new HttpHeaders(headersContent), 
         };
 
-        this.http.post(httpUrls.registerAsClient, this.userInputGroup.value, requestOptions)
+        this.http.post(httpUrls.registerAsUser, this.userInputGroup.value, requestOptions)
         .subscribe(
           (next) => console.log(next),
           (error) => console.log(error),

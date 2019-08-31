@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ATZB.Domain;
-using ATZB.Domain.Models;
-using ATZB.Services.ApplicationServices;
-using ATZB.Services.BaseServices;
-using ATZB.Web.Controllers.Dto_s;
-using ATZB.Web.ViewModels.UserTypeRegisters;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ATZB.Web.Controllers
+﻿namespace ATZB.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using ATZB.Domain;
+    using ATZB.Domain.Models;
+    using ATZB.Services.ApplicationServices;
+    using ATZB.Services.BaseServices;
+    using ATZB.Web.Controllers.Dto_s;
+    using ATZB.Web.ViewModels.UserTypeRegisters;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -40,6 +39,20 @@ namespace ATZB.Web.Controllers
             var getAllUsers = await _userService.GetAllUsersAsync();
 
             return Ok(getAllUsers);
+        }
+
+        [Authorize]
+        [HttpGet("seeProfile")]
+        public async Task<IActionResult> SeeProfile()
+        {
+            return BadRequest("Not Implemented Yet");
+        }
+
+        [Authorize]
+        [HttpGet("seeAllMyOrders")]
+        public async Task<IActionResult> SeeAllMyOrders()
+        {
+            return BadRequest("Not Implemented Yet");
         }
 
         [HttpPost("register")]
@@ -126,10 +139,21 @@ namespace ATZB.Web.Controllers
             }
             else
             {
-                return Ok(new { token = userAndToken.Value, userId = userAndToken.Key.Id, fullName = userAndToken.Key.FirstName + ' ' + userAndToken.Key.LastName });
+                return Ok(new
+                {
+                    token = userAndToken.Value,
+                    userId = userAndToken.Key.Id,
+                    fullName = userAndToken.Key.FirstName + ' ' + userAndToken.Key.LastName
+                });
             }
         }
 
+        [Authorize]
+        [HttpPost("addOrder")]
+        public async Task<IActionResult> AddOrder()
+        {
+            return BadRequest("Not Implemented Yet");
+        }
 
         private async Task<List<string>> GetLinks(List<IFormFile> images, string fullName)
         {
