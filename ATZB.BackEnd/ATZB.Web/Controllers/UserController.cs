@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using ATZB.Domain;
-    using ATZB.Domain.Models;
     using ATZB.Services.ApplicationServices;
     using ATZB.Services.BaseServices;
     using ATZB.Web.Controllers.Dto_s;
@@ -92,32 +91,6 @@
 
             await _userService.CreateUserAsync(user);
 
-            return Ok();
-        }
-
-        [Authorize]
-        [HttpPost("registerCompany")]
-        public async Task<IActionResult> CreateCompany(
-            [FromHeader] string userId,
-            [FromBody] RegisterCompanyBindingModel registerCompanyBindingModel)
-        {
-            if (!this.ModelState.IsValid && int.TryParse(registerCompanyBindingModel.DirectorPrsonalDocumentNumber, out int kur))
-            {
-                return BadRequest();
-            }
-
-            var newCompany = new Company()
-            {
-                DirectorPrsonalDocumentNumber = int.Parse(registerCompanyBindingModel.DirectorPrsonalDocumentNumber),
-                ENK = registerCompanyBindingModel.ENK,
-                DDSNumber = registerCompanyBindingModel.DDSNumber,
-                Mol = registerCompanyBindingModel.Mol,
-                RegKSB = registerCompanyBindingModel.RegKSB,
-                AnyObligation = registerCompanyBindingModel.AnyObligation,
-                UserId = userId
-            };
-
-            _companyService.RegisterCompany(userId, newCompany);
             return Ok();
         }
 

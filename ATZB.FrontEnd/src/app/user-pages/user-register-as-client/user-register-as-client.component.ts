@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as httpUrls from '../../sheard/url`s/urls';
-import { RegisterAsClient } from '../../sheard/user-dto/registerAsClient';
+import { registerAsUser } from '../../sheared/url`s/urls';
+import { RegisterAsClient } from '../../sheared/user-dto/registerAsClient';
 
 @Component({
   selector: 'app-user-register-as-client',
   templateUrl: './user-register-as-client.component.html',
-  styleUrls: ['./user-register-as-client.component.css']
+  styleUrls: ['./user-register-as-client.component.scss']
 })
 export class UserRegisterAsClientComponent implements OnInit {
   userInputGroup: FormGroup;
@@ -47,7 +47,7 @@ export class UserRegisterAsClientComponent implements OnInit {
           headers: new HttpHeaders(headersContent), 
         };
 
-        this.http.post(httpUrls.registerAsUser, this.userInputGroup.value, requestOptions)
+        this.http.post(registerAsUser, this.userInputGroup.value, requestOptions)
         .subscribe(
           (next) => console.log(next),
           (error) => console.log(error),

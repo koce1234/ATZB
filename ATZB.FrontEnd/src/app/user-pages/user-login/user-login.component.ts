@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as httpUrls from '../../sheard/url`s/urls';
+import {userLogin} from '../../sheared/url`s/urls';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LogedUser } from 'src/app/sheard/models/loged-user.interface';
+import { LogedUser } from '../../sheared/models/loged-user.interface';
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
   logInInput: FormGroup;
@@ -34,7 +34,7 @@ export class UserLoginComponent implements OnInit {
     };
 
     if(this.logInInput.valid){
-      this.http.post(httpUrls.userLogin, this.logInInput.value, requestOptions)
+      this.http.post(userLogin, this.logInInput.value, requestOptions)
         .subscribe(
           (next: LogedUser) => {
             localStorage.setItem('token', next.token);

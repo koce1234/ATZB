@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterAsClientComponent } from './user-register-as-client/user-register-as-client.component';
-import { UserRegisterAsPerformerComponent } from './user-register-as-performer/user-register-as-performer.component';
 import { MaterialModule } from '../MaterialModule';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
@@ -24,7 +23,6 @@ const routs = [
     declarations:[
         UserLoginComponent,
         UserRegisterAsClientComponent,
-        UserRegisterAsPerformerComponent,
         UserOrdersComponent,
         UserComponent,
         UserOffersToMeComponent,
@@ -42,7 +40,6 @@ const routs = [
     exports: [
         UserLoginComponent,
         UserRegisterAsClientComponent,
-        UserRegisterAsPerformerComponent,
         MaterialModule,
         CommonModule,
         RouterModule,
