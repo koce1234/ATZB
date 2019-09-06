@@ -5,8 +5,7 @@ namespace ATZB.Web.Controllers
 {
     using ATZB.Domain.Models;
     using System.Threading.Tasks;
-    using ATZB.Domain;
-    using ATZB.Services.ApplicationServices;
+    using ATZB.Services.ApplicationServices.Orders;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -35,7 +34,7 @@ namespace ATZB.Web.Controllers
         [HttpGet("myOrders")]
         public async Task<IActionResult> ReturnAllOrdersByUserIdAsync([FromHeader]string userId)
         {
-            var orders = await _orderService.GetAllOrderByUserIdAsync(userId);
+            var orders = await _orderService.GetAllOrdersByUserIdAsync(userId);
 
             return Ok(orders);
         }
@@ -49,13 +48,13 @@ namespace ATZB.Web.Controllers
 
         [Authorize]
         [HttpGet("orderByCity")]
-        public async Task<IActionResult> OrderByCityAsync(string city)
+        public async Task<IActionResult> OrderByCityAsync(Cities city)
         {
             if (city == null)
             {
                 return BadRequest(GlobalConstants.InvalidCityControllerErrorMsg);
             }
-            return  this.Ok(_orderService.GetAllOrdersAsync().Result.Where(o => o.Town == city));
+            return  this.Ok(_orderService.GetAllOrdersAsync().Result.Where(o => o.City == city));
         }
 
         [Authorize]

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ATZB.Data.DataContext;
-using ATZB.Domain;
+using ATZB.Domain.Models;
 using ATZB.Services.BaseServices;
 using Microsoft.EntityFrameworkCore;
 
-namespace ATZB.Services.ApplicationServices
+namespace ATZB.Services.ApplicationServices.Users
 {
     public class UserService : IUserService
     {
@@ -15,11 +15,11 @@ namespace ATZB.Services.ApplicationServices
 
         public UserService(ATZBDbContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
         }
         public UserService(ATZBDbContext dbContext
-            ,IPasswordValidatorService passwordValidator
-            ,ITokenGeneratorService tokenGeneratorService)
+            , IPasswordValidatorService passwordValidator
+            , ITokenGeneratorService tokenGeneratorService)
         {
             _dbContext = dbContext;
             _passwordValidator = passwordValidator;
@@ -42,17 +42,17 @@ namespace ATZB.Services.ApplicationServices
 
         public async Task<KeyValuePair<ATZBUser, string>> GetUserByUsernameAndPasswordAsync(string email, string password)
         {
-            
+
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
 
             if (user == null)
             {
-                KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null,string.Empty);
+                KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null, string.Empty);
                 return keyValue;
             }
 
-            var validatePassword =  _passwordValidator
-                .CompareHashAsync(password , user.PasswordHash , user.PasswordSalt).Result;
+            var validatePassword = _passwordValidator
+                .CompareHashAsync(password, user.PasswordHash, user.PasswordSalt).Result;
 
             if (validatePassword)
             {
@@ -63,12 +63,12 @@ namespace ATZB.Services.ApplicationServices
             }
             else
             {
-               KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null, string.Empty);
+                KeyValuePair<ATZBUser, string> keyValue = new KeyValuePair<ATZBUser, string>(null, string.Empty);
                 return keyValue;
             }
         }
 
-        public async Task<bool> EmailAlreadyExistAsync(string email) 
+        public async Task<bool> EmailAlreadyExistAsync(string email)
             => await _dbContext.Users.AnyAsync(x => x.Email == email);
     }
 }

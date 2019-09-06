@@ -1,6 +1,6 @@
-﻿namespace ATZB.Services.ApplicationServices
+﻿namespace ATZB.Services.ApplicationServices.Users
 {
-    using ATZB.Domain;
+    using ATZB.Domain.Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 

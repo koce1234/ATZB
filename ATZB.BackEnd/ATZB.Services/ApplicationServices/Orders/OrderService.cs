@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using ATZB.Data.DataContext;
-using ATZB.Domain;
+using ATZB.Domain.Models;
 using ATZB.Services.BaseServices;
 using Microsoft.EntityFrameworkCore;
 
-namespace ATZB.Services.ApplicationServices
+namespace ATZB.Services.ApplicationServices.Orders
 {
-    public class OrderService:IOrderService
+    public class OrderService : IOrderService
     {
 
         private readonly ATZBDbContext _dbContext;
@@ -17,7 +17,7 @@ namespace ATZB.Services.ApplicationServices
 
         public OrderService(ATZBDbContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
         }
         public OrderService(ATZBDbContext dbContext
             , IPasswordValidatorService passwordValidator
@@ -30,10 +30,8 @@ namespace ATZB.Services.ApplicationServices
 
 
         public async Task<List<ATZBOrder>> GetAllOrdersAsync()
-        {
-            var orders = await _dbContext.Orders.ToListAsync();
-            return orders;
-        }
+        => await _dbContext.Orders.ToListAsync();
+
 
         public async Task<ATZBOrder> RegisterOrderAsync(ATZBOrder order)
         {
@@ -43,7 +41,7 @@ namespace ATZB.Services.ApplicationServices
             return order;
         }
 
-        public async Task<List<ATZBOrder>> GetAllOrderByUserIdAsync(string userId)
+        public async Task<List<ATZBOrder>> GetAllOrdersByUserIdAsync(string userId)
             => await _dbContext.Orders.Where(u => u.UserId == userId).ToListAsync();
     }
 }
