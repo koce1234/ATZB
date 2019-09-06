@@ -6,6 +6,8 @@ namespace ATZB.Web
 {
     using ATZB.Data;
     using ATZB.Services.ApplicationServices;
+    using ATZB.Services.ApplicationServices.Orders;
+    using ATZB.Services.ApplicationServices.Users;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

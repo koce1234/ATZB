@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using ATZB.Domain.Models;
 
-namespace ATZB.Domain
+namespace ATZB.Domain.Models
 {
     public class ATZBUser
     {
         public ATZBUser()
         {
-            this.Id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
 
-            this.Orders = new HashSet<ATZBOrder>();
+            Orders = new HashSet<ATZBOrder>();
 
-            this.Offers = new HashSet<ATZBOffert>();
+            Offers = new HashSet<ATZBOffert>();
 
-            this.ImagesLinks = new HashSet<Image>();
+            ImagesLinks = new HashSet<Image>();
 
-            this.TypeOfSpecials = new HashSet<TypeSpecial>();
+            TypeOfSpecials = new HashSet<TypeSpecial>();
         }
 
         public string Id { get; set; }

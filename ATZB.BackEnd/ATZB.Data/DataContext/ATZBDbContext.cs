@@ -1,5 +1,4 @@
-﻿using ATZB.Domain;
-using ATZB.Domain.Models;
+﻿using ATZB.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ATZB.Data.DataContext

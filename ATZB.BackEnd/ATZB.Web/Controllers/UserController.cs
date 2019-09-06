@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ATZB.Domain;
 using ATZB.Domain.Models;
-using ATZB.Services.ApplicationServices;
+using ATZB.Services.ApplicationServices.Users;
 using ATZB.Services.BaseServices;
 using ATZB.Web.Controllers.Dto_s;
 using ATZB.Web.ViewModels;

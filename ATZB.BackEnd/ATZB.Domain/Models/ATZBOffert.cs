@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ATZB.Domain
+namespace ATZB.Domain.Models
 {
-    //TODO: KOL.SMETKA
+
     public class ATZBOffert
     {
         public ATZBOffert()
         {
-            this.Id = Guid.NewGuid().ToString();
-
+            Id = Guid.NewGuid().ToString();
+            
         }
         public string Id { get; set; }
 
@@ -21,5 +21,9 @@ namespace ATZB.Domain
         public string UserId { get; set; }
 
         public ATZBUser User { get; set; }
+
+        public TypeOfSpecial TypeForOfferts { get; set; }
+
+        public Cities City { get; set; }
     }
 }
