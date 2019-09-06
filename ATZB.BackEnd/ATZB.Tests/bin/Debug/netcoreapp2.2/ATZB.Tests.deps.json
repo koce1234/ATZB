@@ -13,6 +13,7 @@
           "ATZB.Services": "1.0.0",
           "ATZB.Web": "1.0.0",
           "EntityFramework": "6.2.0",
+          "Microsoft.EntityFrameworkCore.Analyzers": "2.2.6",
           "Microsoft.NET.Test.Sdk": "16.2.0",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.1"

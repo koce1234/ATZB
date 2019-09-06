@@ -48,13 +48,13 @@ namespace ATZB.Web.Controllers
 
         [Authorize]
         [HttpGet("orderByCity")]
-        public async Task<IActionResult> OrderByCityAsync(Cities city)
+        public async Task<IActionResult> OrderByCityAsync(Cities town)
         {
-            if (city == null)
+            if (town == null)
             {
                 return BadRequest(GlobalConstants.InvalidCityControllerErrorMsg);
             }
-            return  this.Ok(_orderService.GetAllOrdersAsync().Result.Where(o => o.City == city));
+            return  this.Ok(_orderService.GetAllOrdersAsync().Result.Where(o => o.Town == town));
         }
 
         [Authorize]
@@ -73,7 +73,7 @@ namespace ATZB.Web.Controllers
                 Description = addOrderBindingModel.Description,
                 PriceTo = addOrderBindingModel.PriceTo,
                 Town = addOrderBindingModel.Town,
-                TypeForOrder = addOrderBindingModel.TypeOfOrder,
+                TypeForOrders = addOrderBindingModel.TypesOfOrder,
                 UserId = userId
             };
 

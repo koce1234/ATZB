@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {}
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
         "projectName": "ATZB.Data",
-        "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
-        "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\obj\\",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
         "projectName": "ATZB.Domain",
-        "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
-        "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -120,14 +120,14 @@
         }
       }
     },
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
         "projectName": "ATZB.Services",
-        "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
-        "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\obj\\",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -146,11 +146,11 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
               },
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
               }
             }
           }
@@ -191,14 +191,14 @@
         }
       }
     },
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
         "projectName": "ATZB.Tests",
-        "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
-        "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\obj\\",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\ATZB.Tests.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -217,17 +217,17 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
               },
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj"
               },
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
               },
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj"
               }
             }
           }
@@ -278,14 +278,14 @@
         }
       }
     },
-    "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
+    "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
+        "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
         "projectName": "ATZB.Web",
-        "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
-        "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Web\\obj\\",
+        "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\ATZB.Web.csproj",
+        "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -304,11 +304,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Data\\ATZB.Data.csproj"
               },
-              "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
-                "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
+              "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj": {
+                "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Services\\ATZB.Services.csproj"
               }
             }
           }

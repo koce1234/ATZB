@@ -14,7 +14,7 @@ namespace ATZB.Domain.Models
         public decimal PriceTo { get; set; }
 
         [Required]
-        public Cities City { get; set; }
+        public Cities Town { get; set; }
 
         [Required]
         public TypeOfSpecial TypesOfOrder { get; set; }

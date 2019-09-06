@@ -1,4 +1,13 @@
-﻿namespace ATZB.Tests.ApplicationServices
+﻿using ATZB.Data.DataContext;
+using ATZB.Domain.Models;
+using ATZB.Services.ApplicationServices.Orders;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Xunit;
+
+namespace ATZB.Tests.ApplicationServices
 {
     public class OrderServiceTest
     {
