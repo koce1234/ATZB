@@ -13,6 +13,8 @@ import { PageNotFoundComponent } from '../sheard/page-not-found/page-not-found.c
 import { UserOrdersComponent } from '../user-pages/user-orders/user-orders.component';
 import { UserOffersToMeComponent } from '../user-pages/user-offers-to-me/user-offers-to-me.component';
 import { UserComponent } from '../user-pages/user/user.component';
+import { FlexLayoutModule, BREAKPOINTS } from '@angular/flex-layout';
+
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -35,6 +37,7 @@ const routes: Routes = [
         CommonModule,
         MaterialModule,
         RouterModule.forRoot(routes),
+        FlexLayoutModule,
     ],
     exports: [
         CommonModule,
@@ -42,6 +45,9 @@ const routes: Routes = [
         MainNavNotLogedInComponent,
         MaterialModule,
         RouterModule,
+        FlexLayoutModule,
     ]
 })
 export class NavigationModule{}
+
+

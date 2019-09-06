@@ -179,23 +179,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\me\\.nuget\\packages\\": {},
+    "C:\\Users\\Radko\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
       "projectName": "ATZB.Domain",
-      "projectPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
-      "packagesPath": "C:\\Users\\me\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\me\\Desktop\\atzb\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
+      "projectPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\ATZB.Domain.csproj",
+      "packagesPath": "C:\\Users\\Radko\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Radko\\Desktop\\Programing\\ATZB\\ATZB.BackEnd\\ATZB.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\me\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Radko\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

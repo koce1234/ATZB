@@ -2,14 +2,32 @@
     <p>user-orders works!</p>
     <h1>KUR KUR KUR KUR KUR</h1>
     <div class="header">
+        <button type="button" (click)="showAllOrders()">All orders</button>
         <button type="button" (click)="addOrder()">Add order</button>
         <button type="button" (click)="showMyOrders()">My orders</button>
     </div>
     <div class="orders-sections">
         <div *ngIf="showAllOrdersForm">
-            <ul *ngFor="let items of allOrders">
-                <li>{{items}}</li>
-            </ul>
+            <div *ngFor="let order of allOrders">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ order.description }}
+                        </mat-panel-title>
+                        </mat-expansion-panel-header>
+                      
+                        <div>
+                            Order Location: {{ order.town }}
+                        </div>
+
+                        <div>
+                            Price Up To: {{ order.priceTo }}
+                        </div>
+                      
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
         <div *ngIf="showAddOrderForm">
             <form [formGroup]="addOrderFormGroup">
@@ -31,7 +49,26 @@
             </form>
         </div>
         <div *ngIf="showMyOrdersForm">
-
+            <div *ngFor="let order of myOrders">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{ order.description }}
+                        </mat-panel-title>
+                        </mat-expansion-panel-header>
+                              
+                         <div>
+                            Order Location: {{ order.town }}
+                        </div>
+        
+                        <div>
+                            Price Up To: {{ order.priceTo }}
+                        </div>
+                              
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
         </div>
     </div>
 </div>

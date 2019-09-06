@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as httpUrls from '../../sheard/url`s/urls';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LogedUser } from 'src/app/sheard/models/loged-user.interface';
 
 @Component({
   selector: 'app-user-login',
@@ -35,9 +36,10 @@ export class UserLoginComponent implements OnInit {
     if(this.logInInput.valid){
       this.http.post(httpUrls.userLogin, this.logInInput.value, requestOptions)
         .subscribe(
-          (next: { token: string, userId: string }) => {
+          (next: LogedUser) => {
             localStorage.setItem('token', next.token);
             localStorage.setItem('userId', next.userId);
+            localStorage.setItem('fullName', next.fullName);
             this.router.navigate(['']);
           },
           (error) => console.log(error),

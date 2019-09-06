@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as httpUrls from '../../sheard/url`s/urls';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Order } from 'src/app/sheard/models/order.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-orders',
@@ -9,14 +11,15 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./user-orders.component.css']
 })
 export class UserOrdersComponent implements OnInit {
-  allOrders: any[] = [];
-  myOrders: any[] = [];
+  allOrders: Order[] = [];
+  myOrders: Order[] = [];
+  dataSourse: any;
   showAllOrdersForm: boolean;
   showAddOrderForm: boolean;
   showMyOrdersForm: boolean;
   addOrderFormGroup: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.showAllOrdersForm = true;
@@ -27,10 +30,13 @@ export class UserOrdersComponent implements OnInit {
     headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
 
     this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
-      (next) => console.log(next),
+      (next: Order[]) => {
+        console.log(next);
+        this.allOrders = next
+      },
       (error) => console.log(error),
       () => console.log('compleeted')
-    )
+    );
   }
 
   addOrder() {
@@ -45,8 +51,16 @@ export class UserOrdersComponent implements OnInit {
   }
 
   submitOrder() {
-    console.log('submit button clicked');
-    console.log(this.addOrderFormGroup);
+    let headers = new HttpHeaders;
+    headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
+    headers = headers.set("UserId", localStorage.getItem('userId'));
+
+    this.http.post(httpUrls.addOrder, this.addOrderFormGroup.value, { headers: headers })
+      .subscribe(
+        (next) => console.log(next),
+        (error) => console.log(error),
+        () => this.showAllOrders()
+    );
   }
 
   showMyOrders() {
@@ -59,9 +73,27 @@ export class UserOrdersComponent implements OnInit {
 
     this.http.get(httpUrls.getMyOrders, { headers })
       .subscribe(
-        (next) => console.log(next),
+        (next: Order[]) => this.myOrders = next,
         (error) => console.log(error),
         () => console.log('compleeted')
       )
+  }
+
+  showAllOrders() {
+    this.showAllOrdersForm = true;
+    this.showAddOrderForm = false;
+    this.showMyOrdersForm = false;
+
+    let headers = new HttpHeaders;
+    headers = headers.set("Authorization", "Bearer " + localStorage.getItem('token'));
+
+    this.http.get(httpUrls.getAllOrders, {headers: headers}).subscribe(
+      (next: Order[]) => {
+        this.allOrders = next;
+        this.dataSourse = this.allOrders;
+      },
+      (error) => console.log(error),
+      () => console.log('compleeted')
+    );
   }
 }
